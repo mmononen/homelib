@@ -1,0 +1,328 @@
+:root {
+  /* EndeavourOS Väripaletti */
+  --eos-bg: #0f1419;              /* Erittäin tumma tausta */
+  --eos-surface: #1a212a;         /* Korttien ja elementtien tausta */
+  --eos-surface-hover: #242d39;   /* Hover-tila */
+  --eos-border: #2e3846;          /* Subtiilit reunat */
+  
+  --eos-purple: #7f3fbf;          /* Endeavour-violetti */
+  --eos-magenta: #da4453;         /* Tehosteväri / korostus */
+  --eos-cyan: #33aadd;            /* Linkit & toissijainen tehoste */
+  
+  --eos-text: #e6edf3;            /* Erittäin luettava vaalea teksti */
+  --eos-text-muted: #8b949e;      /* Vaalennettu teksti metatiedoille */
+  
+  /* Statusvärit */
+  --status-green-bg: #1c3326;
+  --status-green-text: #4ade80;
+  --status-red-bg: #3a1c22;
+  --status-red-text: #f87171;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--eos-bg);
+  color: var(--eos-text);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HEADER & NAVIGAATIO */
+header {
+  background: linear-gradient(135deg, #151a21 0%, #1e132b 100%);
+  border-bottom: 2px solid var(--eos-purple);
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #ffffff, var(--eos-cyan));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav button {
+  background: var(--eos-surface);
+  border: 1px solid var(--eos-border);
+  color: var(--eos-text);
+  padding: 0.45rem 0.9rem;
+  margin-left: 0.4rem;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+nav button:hover {
+  background: var(--eos-surface-hover);
+  border-color: var(--eos-cyan);
+}
+
+nav button.active {
+  background: var(--eos-purple);
+  color: #ffffff;
+  border-color: var(--eos-purple);
+  box-shadow: 0 0 10px rgba(127, 63, 191, 0.5);
+}
+
+/* PÄÄALUE */
+main {
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+.nakyma { display: none; }
+.nakyma.active { display: block; }
+
+/* HAKUKENTTÄ */
+.haku-alue { margin-bottom: 1.2rem; }
+
+#hakukentta {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  background-color: var(--eos-surface);
+  color: var(--eos-text);
+  border: 1px solid var(--eos-border);
+  border-radius: 6px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#hakukentta:focus {
+  border-color: var(--eos-purple);
+  box-shadow: 0 0 0 3px rgba(127, 63, 191, 0.25);
+}
+
+#hakukentta::placeholder {
+  color: var(--eos-text-muted);
+}
+
+/* KIRJALISTAUS (TIIVIS HAITARI) */
+.kirjalista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.kirja-item {
+  background: var(--eos-surface);
+  border: 1px solid var(--eos-border);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.kirja-item:hover {
+  border-color: var(--eos-purple);
+  background-color: var(--eos-surface-hover);
+}
+
+.kirja-otsikko-rivi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.9rem;
+  cursor: pointer;
+  user-select: none;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+}
+
+.kirja-paatiedot {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.6rem;
+}
+
+.kirjailija {
+  font-weight: 700;
+  color: var(--eos-cyan);
+}
+
+.teos-nimi {
+  font-style: italic;
+  color: var(--eos-text);
+}
+
+.vuosi-sivut {
+  color: var(--eos-text-muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.kirja-oikea-reuna {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+/* Status-tagit */
+.tila-tagi {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.tila-hyllyssa { 
+  background: var(--status-green-bg); 
+  color: var(--status-green-text); 
+  border: 1px solid rgba(74, 222, 128, 0.2);
+}
+.tila-ei-hyllyssa { 
+  background: var(--status-red-bg); 
+  color: var(--status-red-text); 
+  border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+.nuoli {
+  font-size: 0.7rem;
+  color: var(--eos-text-muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* HAITARIN SISÄLTÖ */
+.kirja-lisatiedot {
+  display: none;
+  padding: 0.75rem 0.9rem;
+  background-color: #131920;
+  border-top: 1px solid var(--eos-border);
+  font-size: 0.85rem;
+  color: var(--eos-text-muted);
+}
+
+.kirja-lisatiedot strong {
+  color: var(--eos-text);
+}
+
+.kirja-item.open {
+  border-color: var(--eos-purple);
+}
+
+.kirja-item.open .kirja-lisatiedot {
+  display: block;
+}
+
+.kirja-item.open .nuoli {
+  transform: rotate(180deg);
+  color: var(--eos-cyan);
+}
+
+.metat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.5rem 1rem;
+}
+
+/* TILASTOTILAN TYYLIT */
+.tilasto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.tilasto-kortti {
+  background: var(--eos-surface);
+  padding: 1rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid var(--eos-border);
+}
+
+.tilasto-kortti h3 { 
+  margin-top: 0; 
+  font-size: 0.95rem; 
+  color: var(--eos-cyan); 
+  border-bottom: 1px solid var(--eos-border); 
+  padding-bottom: 0.4rem; 
+}
+
+.tilasto-kortti ul { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+  font-size: 0.85rem; 
+}
+
+.tilasto-kortti li { 
+  display: flex; 
+  justify-content: space-between; 
+  padding: 0.3rem 0; 
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05); 
+  color: var(--eos-text-muted);
+}
+
+.tilasto-kortti li span {
+  color: var(--eos-text);
+}
+
+.tilasto-kortti li strong {
+  color: var(--eos-cyan);
+}
+
+/* Tilasto-osioiden väliotsikot */
+#tilastot-sisalto h2 {
+  color: #ffffff !important;
+  font-size: 1.1rem;
+  border-left: 3px solid var(--eos-purple);
+  padding-left: 0.5rem;
+}
+
+/* MOBIILIOOPTIMOINNIT */
+@media (max-width: 600px) {
+  header { padding: 0.6rem 1rem; }
+  .kirja-otsikko-rivi { padding: 0.55rem 0.7rem; }
+  .kirja-paatiedot { flex-direction: column; gap: 0.1rem; }
+  .vuosi-sivut { font-size: 0.8rem; }
+}
+
+/* NÄYTÄ KAIKKI -PAINIKE TILASTOISSA */
+.btn-nayta-lisaa {
+  background: transparent;
+  border: none;
+  color: var(--eos-cyan);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0 0 0;
+  margin-top: 0.4rem;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.btn-nayta-lisaa:hover {
+  color: var(--eos-purple);
+  text-decoration: underline;
+}
+
+.piilotetut-rivit {
+  border-top: 1px dashed var(--eos-border);
+  margin-top: 0.2rem;
+}
+
+/* SIJANUMERO TILASTOLISALLA */
+.sijanumero {
+  color: var(--eos-cyan);
+  font-weight: bold;
+  display: inline-block;
+  min-width: 1.5rem; /* Pitää nimet siistissä linjassa keskenään */
+}

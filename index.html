@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kotikirjasto & Lukupäiväkirja</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Kotikirjasto</h1>
+    <nav>
+      <button id="btn-kirjat" class="active" onclick="naytaNakyma('kirjat')">Kirjalistaus</button>
+      <button id="btn-tilastot" onclick="naytaNakyma('tilastot')">Tilastot</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- KIRJALISTAUS-NÄKYMÄ -->
+    <section id="nakyma-kirjat" class="nakyma active">
+      <div class="haku-alue">
+        <input type="text" id="hakukentta" placeholder="Hae kirjailijalla, nimellä, kustantajalla, maalla..." oninput="suodataKirjat()">
+      </div>
+
+      <div id="kirjalista" class="kirjalista">
+        <!-- Kirjat latautuvat tähän JavaScriptillä -->
+      </div>
+    </section>
+
+    <!-- TILASTO-NÄKYMÄ -->
+    <section id="nakyma-tilastot" class="nakyma">
+      <h2>Kokoelman tilastot</h2>
+      <div id="tilastot-sisalto" class="tilasto-grid">
+        <!-- Tilastot latautuvat tähän JavaScriptillä -->
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
