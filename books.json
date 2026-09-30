@@ -2806,5 +2806,70 @@
     "luettu_pvm": "2019-10-08",
     "hyllyssa": false,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 217,
+    "kirjailija": "Slack, Jennifer Daryl",
+    "nimi": "Culture and Technology: A Primer",
+    "julkaisuvuosi": 2005,
+    "sivumaara": 269,
+    "kustantaja": "Peter Lang",
+    "suomentaja": null,
+    "alkuperamaa": "Yhdysvallat",
+    "luettu_pvm": "2018-03-04",
+    "hyllyssa": false,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 218,
+    "kirjailija": "Nabokov, Vladimir",
+    "nimi": "Lumooja",
+    "julkaisuvuosi": 1939,
+    "sivumaara": 111,
+    "kustantaja": "Gummerus",
+    "suomentaja": "Salmenoja, Margit",
+    "alkuperamaa": "Venäjä",
+    "luettu_pvm": "2018-04-06",
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 219,
+    "kirjailija": "Mukka, Timo K.",
+    "nimi": "Kyyhky ja unikko",
+    "julkaisuvuosi": 1970,
+    "sivumaara": 116,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2018-04-07",
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 220,
+    "kirjailija": "Merilä, Kai",
+    "nimi": "Luottotoimittaja: julkisuutta voi hallita",
+    "julkaisuvuosi": 2016,
+    "sivumaara": 265,
+    "kustantaja": "Johnny Kniga",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2018-04-09",
+    "hyllyssa": false,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 221,
+    "kirjailija": "Kultima, Annakaisa",
+    "nimi": "Ylistetyt, rakastetut, paheksutut, unohdetut: avauksia suomalaisen pelihistorian laajaan kirjoon",
+    "julkaisuvuosi": 2017,
+    "sivumaara": 191,
+    "kustantaja": "Mediamuseo Rupriikki",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2018-06-18",
+    "hyllyssa": false,
+    "luku_tilastoihin": true
   }
 ]
