@@ -2871,5 +2871,44 @@
     "luettu_pvm": "2018-06-18",
     "hyllyssa": false,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 222,
+    "kirjailija": "Page, Martin",
+    "nimi": "Kuinka minusta tuli tyhmä",
+    "julkaisuvuosi": 2001,
+    "sivumaara": 157,
+    "kustantaja": "Like",
+    "suomentaja": "Partanen, Anu",
+    "alkuperamaa": "Ranska",
+    "luettu_pvm": "2017-02-24",
+    "hyllyssa": false,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 223,
+    "kirjailija": "Waters, John",
+    "nimi": "Shokkiarvo: hyvällä maulla tehty kirja huonosta mausta",
+    "julkaisuvuosi": 1981,
+    "sivumaara": 238,
+    "kustantaja": "Like",
+    "suomentaja": "Lempinen, Kari",
+    "alkuperamaa": "Yhdysvallat",
+    "luettu_pvm": "2017-05-28",
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 224,
+    "kirjailija": "Liimatta, Tommi",
+    "nimi": "Rautanaula",
+    "julkaisuvuosi": 2013,
+    "sivumaara": 237,
+    "kustantaja": "Like",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2017-06-05",
+    "hyllyssa": false,
+    "luku_tilastoihin": true
   }
 ]
