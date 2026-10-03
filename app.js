@@ -42,6 +42,12 @@ function paivitaKirjalista(kirjat) {
     item.className = "kirja-item";
 
     const luettuTeksti = kirja.luettu_pvm ? `Luettu ${kirja.luettu_pvm}` : "Lukematon";
+    
+    // Keltainen tagi, jos kirja on luettu
+    const luettuStatus = kirja.luettu_pvm 
+      ? '<span class="tila-tagi tila-luettu">Luettu</span>' 
+      : '';
+
     const hyllyStatus = kirja.hyllyssa 
       ? '<span class="tila-tagi tila-hyllyssa">Hyllyssä</span>' 
       : '<span class="tila-tagi tila-ei-hyllyssa">Ei hyllyssä</span>';
@@ -54,6 +60,7 @@ function paivitaKirjalista(kirjat) {
           <span class="vuosi-sivut">(${kirja.julkaisuvuosi}) ${kirja.sivumaara} s.</span>
         </div>
         <div class="kirja-oikea-reuna">
+          ${luettuStatus}
           ${hyllyStatus}
           <span class="nuoli">▼</span>
         </div>
