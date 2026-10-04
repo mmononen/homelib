@@ -120,7 +120,7 @@ function naytaNakyma(nakymaId) {
 }
 
 // ==========================================
-// 3. Kirjasarjat -osion käsittely (PÄIVITETTY)
+// 3. Kirjasarjat -osion käsittely
 // ==========================================
 function alustaSarjat(kirjat) {
   const sarjatMap = {};
@@ -128,7 +128,6 @@ function alustaSarjat(kirjat) {
   kirjat.forEach(kirja => {
     if (!kirja.nimi) return;
 
-    // Etsitään hakasulkeet formatissa: [Sarjan nimi: osanumero] Teoksen nimi
     const match = kirja.nimi.match(/^\[(.* construct)?([^:]+):\s*(\d+)\]\s*(.*)$/);
 
     if (match) {
@@ -144,7 +143,6 @@ function alustaSarjat(kirjat) {
         };
       }
 
-      // Kerätään kaikki tekijät mukaan (erotellaan jos tekijöissä on / -merkkejä)
       if (kirja.kirjailija) {
         kirja.kirjailija.split('/').forEach(t => {
           const siistiTekija = t.trim();
@@ -247,7 +245,7 @@ function suodataSarjat() {
 }
 
 // ==========================================
-// 4. Älykäs Tilastointi
+// 4. Älykäs Tilastointi (LISÄTTY 7. KORTTI)
 // ==========================================
 function luoTilastot(kirjat) {
   const tilastoDiv = document.getElementById("tilastot-sisalto");
@@ -270,12 +268,21 @@ function luoTilastot(kirjat) {
 
   const ryhmitteleMetadata = (kirjalista, avain) => {
     return kirjalista.reduce((acc, k) => {
-      const raakaArvo = k[avain];
-      if (!raakaArvo && raakaArvo !== 0) return acc;
+      let arvot = [];
 
-      const arvot = typeof raakaArvo === 'string' 
-        ? raakaArvo.split('/').map(s => s.trim()).filter(s => s.length > 0)
-        : [raakaArvo];
+      if (avain === "julkaisuvuosikymmen") {
+        const v = parseInt(k.julkaisuvuosi, 10);
+        if (!isNaN(v) && v > 0) {
+          arvot = [`${Math.floor(v / 10) * 10}-luku`];
+        }
+      } else {
+        const raakaArvo = k[avain];
+        if (!raakaArvo && raakaArvo !== 0) return acc;
+
+        arvot = typeof raakaArvo === 'string' 
+          ? raakaArvo.split('/').map(s => s.trim()).filter(s => s.length > 0)
+          : [raakaArvo];
+      }
 
       arvot.forEach(arvo => {
         if (!acc[arvo]) {
@@ -434,6 +441,7 @@ function luoTilastot(kirjat) {
     const kaantajat = ryhmitteleMetadata(kohdeKirjat, "suomentaja");
     const maat = ryhmitteleMetadata(kohdeKirjat, "alkuperamaa");
     const vuodet = ryhmitteleMetadata(kohdeKirjat, "julkaisuvuosi");
+    const vuosikymmenet = ryhmitteleMetadata(kohdeKirjat, "julkaisuvuosikymmen");
 
     return `
       <div style="grid-column: 1 / -1; margin-top: 1rem; border-bottom: 2px solid var(--eos-purple);">
@@ -452,6 +460,11 @@ function luoTilastot(kirjat) {
       <div class="tilasto-kortti">
         <h3>Sivumäärät (Kirjailija)</h3>
         ${renderKokoLista(kirjailijat, naytaHyllyInfo)}
+      </div>
+
+      <div class="tilasto-kortti">
+        <h3>Sivumäärät (Julkaisuvuosikymmen)</h3>
+        ${renderKokoLista(vuosikymmenet, naytaHyllyInfo)}
       </div>
 
       <div class="tilasto-kortti">
