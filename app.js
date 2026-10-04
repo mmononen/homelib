@@ -467,12 +467,21 @@ function alustaLeaderboard(kirjat) {
       const jarjestetyt = Object.entries(ryhmitelty)
         .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'fi'));
 
-      vuosiSijoitukset[vuosi] = jarjestetyt.map(([nimi, sivut], idx) => ({
-        nimi,
-        sivut,
-        rank: idx + 1,
-        points: idx < 10 ? (10 - idx) : 0
-      }));
+      // UUSI DYNAMIIKKA: Maksimipisteet ovat listan pituus (korkeintaan 10 p)
+      const listaPituus = jarjestetyt.length;
+      const maxPisteet = Math.min(listaPituus, 10);
+
+      vuosiSijoitukset[vuosi] = jarjestetyt.map(([nimi, sivut], idx) => {
+        // Ensimmäinen saa maxPisteet, toinen maxPisteet - 1, jne. Minimi 0 p.
+        const lasketutPisteet = Math.max(0, maxPisteet - idx);
+
+        return {
+          nimi,
+          sivut,
+          rank: idx + 1,
+          points: lasketutPisteet
+        };
+      });
     });
 
     globaaliLeaderboardData.kategoriat[kat] = vuosiSijoitukset;
@@ -492,15 +501,20 @@ function alustaLeaderboardValikot() {
   const valikotHTML = `
     <!-- Pisteiden laskentatavan info-laatikko -->
     <div class="tilasto-kortti" style="grid-column: 1 / -1; background: var(--eos-card-bg); border-left: 4px solid var(--eos-purple); margin-bottom: 1rem; font-size: 0.9rem; line-height: 1.4;">
-      <h3 style="margin-top: 0; color: var(--eos-purple); font-size: 1rem;">ℹ️ Miten pisteet lasketaan?</h3>
+      <h3 style="margin-top: 0; color: var(--eos-purple); font-size: 1rem;">ℹ️ Miten pisteet lasketaan & Tiebreak-sääntö</h3>
       <p style="margin-bottom: 0.5rem;">
-        Jokaisen kalenterivuoden <strong>Top 10</strong> (luettujen sivumäärien mukaan) palkitaan Leaderboard-pisteillä:
+        Jokaisen kalenterivuoden sijoituksista luettujen sivumäärien mukaan jaetaan pisteitä seuraavasti:
       </p>
-      <div style="font-family: monospace; font-size: 0.85rem; color: var(--eos-cyan); background: rgba(0, 0, 0, 0.3); padding: 0.5rem; border-radius: 4px; display: inline-block;">
-        1. sija = 10 p &bull; 2. sija = 9 p &bull; 3. sija = 8 p &bull; ... &bull; 10. sija = 1 p
-      </div>
-      <p style="margin-top: 0.5rem; margin-bottom: 0; color: var(--eos-text-muted);">
-        <strong>Kumulatiivinen All-Time -näkymä</strong> summaa nämä vuotuiset pisteet yhteen koko historialta valittuun vuoteen asti. <strong>Yksittäinen vuositilasto</strong> näyttää sen hetkisen vuoden luetut sivut ja jaetut pisteet.
+      <ul style="margin-top: 0; padding-left: 1.2rem; color: var(--eos-text-muted);">
+        <li><strong>Täysi lista (10 tai yli):</strong> 1. sija = 10 p &bull; 2. sija = 9 p &bull; ... &bull; 10. sija = 1 p.</li>
+        <li><strong>Pieni lista (alle 10 nimikettä):</strong> Maksimipisteet määräytyvät listan koon mukaan. Esim. jos listalla on 4 nimeä, pisteet ovat <strong>4 p, 3 p, 2 p ja 1 p</strong>.</li>
+      </ul>
+      <p style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+        <strong>⚖️ Tiebreak-sääntö (Tasatilanteen ratkaisu):</strong>
+      </p>
+      <p style="margin-top: 0; margin-bottom: 0; color: var(--eos-text-muted); font-size: 0.85rem;">
+        Jos kahdella tai useammalla kohteella on All-Time -taulukossa sama pistemäärä, paremmuus ratkaistaan järjestyksessä: 
+        <strong>1. Kultamitalit (🥇)</strong> &rarr; <strong>2. Hopeamitalit (🥈)</strong> &rarr; <strong>3. Pronssimitalit (🥉)</strong> &rarr; <strong>4. Top 10 -vuodet</strong> &rarr; <strong>5. Aakkosjärjestys</strong>.
       </p>
     </div>
 
@@ -617,19 +631,22 @@ function renderYksittainenVuositilasto(container, vuosi, data) {
 function renderKumulatiivinenTilasto(container, kohdeVuosi, vuosiSijoitukset) {
   const vuodet = globaaliLeaderboardData.vuodet.filter(v => v <= kohdeVuosi);
 
+  // Päivitetty vertailufunktio uuden Tiebreak-säännön mukaan
   const vertaileEntiteetteja = (a, b) => {
     if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
     if (b.gold !== a.gold) return b.gold - a.gold;
     if (b.silver !== a.silver) return b.silver - a.silver;
     if (b.bronze !== a.bronze) return b.bronze - a.bronze;
-    return a.nimi.localeCompare(b.nimi, 'fi');
+    if (b.top10Appearances !== a.top10Appearances) return b.top10Appearances - a.top10Appearances; // UUSI: Top 10 -vuodet
+    return a.nimi.localeCompare(b.nimi, 'fi'); // Aakkosjärjestys
   };
 
   const ovatkoTasan = (a, b) => {
     return a.totalPoints === b.totalPoints &&
-           a.gold === b.gold &&
-           a.silver === b.silver &&
-           a.bronze === b.bronze;
+          a.gold === b.gold &&
+          a.silver === b.silver &&
+          a.bronze === b.bronze &&
+          a.top10Appearances === b.top10Appearances;
   };
 
   const entiteetit = {};

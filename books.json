@@ -5328,6 +5328,71 @@
     "luettu_pvm": "2011-12-27",
     "hyllyssa": false,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 411,
+    "kirjailija": "Mäkelä, J. Pekka",
+    "nimi": "Karsta",
+    "julkaisuvuosi": 2009,
+    "sivumaara": 317,
+    "kustantaja": "Like",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2010-01-04",
+    "hyllyssa": false,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 412,
+    "kirjailija": "Anton, Tuomas",
+    "nimi": "Ääretön matka",
+    "julkaisuvuosi": 2009,
+    "sivumaara": 86,
+    "kustantaja": "Books on Demand",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2010-01-04",
+    "hyllyssa": false,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 413,
+    "kirjailija": "Pohl, Frederik",
+    "nimi": "Avaruuden kauppamiehet",
+    "julkaisuvuosi": 1953,
+    "sivumaara": 206,
+    "kustantaja": "WSOY",
+    "suomentaja": "Koskinen, Ari",
+    "alkuperamaa": "Yhdysvallat",
+    "luettu_pvm": "2010-01-11",
+    "hyllyssa": false,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 414,
+    "kirjailija": "Sokal, Benoît",
+    "nimi": "Kasvoton nainen",
+    "julkaisuvuosi": 2009,
+    "sivumaara": 48,
+    "kustantaja": "Jalava",
+    "suomentaja": "Tolvanen, Juhani",
+    "alkuperamaa": "Belgia",
+    "luettu_pvm": "2010-01-11",
+    "hyllyssa": false,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 415,
+    "kirjailija": "DeLillo, Don",
+    "nimi": "Valkoinen kohina",
+    "julkaisuvuosi": 1984,
+    "sivumaara": 348,
+    "kustantaja": "Tammi",
+    "suomentaja": "Bützow, Helene",
+    "alkuperamaa": "Yhdysvallat",
+    "luettu_pvm": "2010-01-13",
+    "hyllyssa": false,
+    "luku_tilastoihin": true
   }
 ]
 
