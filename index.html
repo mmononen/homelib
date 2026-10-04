@@ -10,11 +10,13 @@
 
   <header>
     <h1>Kotikirjasto</h1>
-    <nav>
-      <button id="btn-kirjat" class="active" onclick="naytaNakyma('kirjat')">Kirjalistaus</button>
-      <button id="btn-tilastot" onclick="naytaNakyma('tilastot')">Tilastot</button>
-      <button id="btn-leaderboard" onclick="naytaNakyma('leaderboard')">Leaderboard</button>
-    </nav>
+        <!-- Lisää navigaatioon uusi painike -->
+      <nav>
+        <button id="btn-kirjat" class="active" onclick="naytaNakyma('kirjat')">Kirjat</button>
+        <button id="btn-sarjat" onclick="naytaNakyma('sarjat')">Kirjasarjat</button> <!-- UUSI -->
+        <button id="btn-tilastot" onclick="naytaNakyma('tilastot')">Tilastot</button>
+        <button id="btn-leaderboard" onclick="naytaNakyma('leaderboard')">Leaderboard</button>
+      </nav>
   </header>
 
   <main>
@@ -29,6 +31,20 @@
       </div>
     </section>
 
+    <!-- Lisää tämä uusi näkymä-div muiden näkymien joukkoon -->
+    <div id="nakyma-sarjat" class="nakyma">
+      <div class="tilasto-kortti" style="margin-bottom: 1rem;">
+        <input 
+          type="text" 
+          id="sarja-hakukentta" 
+          placeholder="Hae sarjan nimellä tai kirjailijalla..." 
+          oninput="suodataSarjat()"
+          style="width: 100%; padding: 0.6rem; background: #000; color: #fff; border: 1px solid var(--eos-cyan); border-radius: 4px;"
+        >
+      </div>
+      <div id="sarjat-sisalto"></div>
+    </div>
+
     <!-- TILASTO-NÄKYMÄ -->
     <section id="nakyma-tilastot" class="nakyma">
       <h2>Kokoelman tilastot</h2>
@@ -40,14 +56,12 @@
     <!-- LEADERBOARD-NÄKYMÄ -->
     <section id="nakyma-leaderboard" class="nakyma">
       <h2>All-Time Leaderboard</h2>
-      
-
-
       <div id="leaderboard-sisalto">
         <!-- Leaderboard-taulukko latautuu tähän JavaScriptillä -->
       </div>
     </section>
   </main>
+
 
   <script src="app.js"></script>
 </body>

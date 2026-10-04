@@ -1,8 +1,11 @@
 let kaikkiKirjat = [];
 let globaaliLeaderboardData = {};
 let valittuLeaderboardKategoria = "kirjailija";
+let globaaliSarjaData = [];
 
+// ==========================================
 // 1. Datan haku JSON-tiedostosta & Alustukset
+// ==========================================
 document.addEventListener("DOMContentLoaded", () => {
   fetch("books.json")
     .then(response => response.json())
@@ -12,11 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
       paivitaKirjalista(kaikkiKirjat);
       luoTilastot(kaikkiKirjat);
       alustaLeaderboard(kaikkiKirjat);
+      alustaSarjat(kaikkiKirjat);
     })
     .catch(error => console.error("Virhe ladattaessa kirjadataa:", error));
 });
 
-// 2. Järjestäminen (Ensimmäisen kirjailijan nimi -> Teoksen nimi)
+// ==========================================
+// 2. Järjestäminen & Kirjalista (A-Z)
+// ==========================================
 function jarjestaKirjat(kirjat) {
   kirjat.sort((a, b) => {
     const kirjailijaA = (a.kirjailija || "").split("/")[0].trim();
@@ -29,9 +35,10 @@ function jarjestaKirjat(kirjat) {
   });
 }
 
-// 3. Tiiviin haitarilistan tulostus
 function paivitaKirjalista(kirjat) {
   const listaElementti = document.getElementById("kirjalista");
+  if (!listaElementti) return;
+  
   listaElementti.innerHTML = "";
 
   if (kirjat.length === 0) {
@@ -81,13 +88,11 @@ function paivitaKirjalista(kirjat) {
   });
 }
 
-// Haitarin avaus/sulkeminen
 function toggleHaitari(elementti) {
   const kortti = elementti.parentElement;
   kortti.classList.toggle("open");
 }
 
-// 4. Hakutoiminto metatiedoista
 function suodataKirjat() {
   const hakusana = document.getElementById("hakukentta").value.toLowerCase();
 
@@ -103,19 +108,138 @@ function suodataKirjat() {
   paivitaKirjalista(suodatetut);
 }
 
-// 5. Näkymän vaihto (Kirjat / Tilastot / Leaderboard)
 function naytaNakyma(nakymaId) {
   document.querySelectorAll('.nakyma').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
 
-  document.getElementById(`nakyma-${nakymaId}`).classList.add('active');
-  document.getElementById(`btn-${nakymaId}`).classList.add('active');
+  const kohdeNakyma = document.getElementById(`nakyma-${nakymaId}`);
+  const kohdeBtn = document.getElementById(`btn-${nakymaId}`);
+
+  if (kohdeNakyma) kohdeNakyma.classList.add('active');
+  if (kohdeBtn) kohdeBtn.classList.add('active');
 }
 
-// 6. Älykäs Tilastointi
+// ==========================================
+// 3. Kirjasarjat -osion käsittely
+// ==========================================
+function alustaSarjat(kirjat) {
+  const sarjatMap = {};
+
+  kirjat.forEach(kirja => {
+    if (!kirja.nimi) return;
+
+    // Etsitään hakasulkeet formatissa: [Sarjan nimi: osanumero] Teoksen nimi
+    const match = kirja.nimi.match(/^\[(.* construct)?([^:]+):\s*(\d+)\]\s*(.*)$/);
+
+    if (match) {
+      const sarjanNimi = match[2].trim();
+      const osaNumero = parseInt(match[3], 10);
+      const teoksenNimi = match[4].trim();
+
+      if (!sarjatMap[sarjanNimi]) {
+        sarjatMap[sarjanNimi] = {
+          sarja: sarjanNimi,
+          kirjailija: kirja.kirjailija || "Tuntematon kirjailija",
+          osat: []
+        };
+      }
+
+      sarjatMap[sarjanNimi].osat.push({
+        osa: osaNumero,
+        nimi: teoksenNimi,
+        vuosi: kirja.julkaisuvuosi,
+        luettu: kirja.luettu_pvm !== null,
+        hyllyssa: kirja.hyllyssa
+      });
+    }
+  });
+
+  globaaliSarjaData = Object.values(sarjatMap).map(s => {
+    s.osat.sort((a, b) => a.osa - b.osa);
+    return s;
+  });
+
+  globaaliSarjaData.sort((a, b) => a.sarja.localeCompare(b.sarja, 'fi'));
+
+  renderSarjat(globaaliSarjaData);
+}
+
+function renderSarjat(sarjaLista) {
+  const container = document.getElementById("sarjat-sisalto");
+  if (!container) return;
+
+  if (sarjaLista.length === 0) {
+    container.innerHTML = "<p style='text-align:center; color:var(--eos-text-muted);'>Ei sarjoja löytynyt.</p>";
+    return;
+  }
+
+  let html = "";
+
+  sarjaLista.forEach(s => {
+    html += `
+      <div class="tilasto-kortti" style="margin-bottom: 1.5rem;">
+        <div style="border-bottom: 1px solid var(--eos-purple); padding-bottom: 0.5rem; margin-bottom: 0.8rem;">
+          <h3 style="margin: 0; color: var(--eos-cyan); font-size: 1.1rem;">${s.sarja}</h3>
+          <span style="font-size: 0.85rem; color: var(--eos-text-muted);">${s.kirjailija}</span>
+        </div>
+
+        <ul style="list-style: none; padding: 0; margin: 0;">
+    `;
+
+    s.osat.forEach(osa => {
+      const luettuTagi = osa.luettu
+        ? '<span class="tila-tagi tila-luettu">Luettu</span>'
+        : '<span class="tila-tagi" style="background:#333; color:#aaa;">Lukematon</span>';
+
+      const hyllyTagi = osa.hyllyssa
+        ? '<span class="tila-tagi tila-hyllyssa">Hyllyssä</span>'
+        : '<span class="tila-tagi tila-ei-hyllyssa">Ei hyllyssä</span>';
+
+      html += `
+        <li style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dashed rgba(255,255,255,0.1);">
+          <div>
+            <strong style="color: var(--eos-purple); font-size: 0.95rem;">Osa ${osa.osa}:</strong> 
+            <span>${osa.nimi}</span> 
+            <small style="color: var(--eos-text-muted);">(${osa.vuosi || "-"})</small>
+          </div>
+          <div style="display: flex; gap: 0.4rem; white-space: nowrap;">
+            ${luettuTagi}
+            ${hyllyTagi}
+          </div>
+        </li>
+      `;
+    });
+
+    html += `
+        </ul>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
+function suodataSarjat() {
+  const hakukentta = document.getElementById("sarja-hakukentta");
+  if (!hakukentta) return;
+  
+  const hakusana = hakukentta.value.toLowerCase();
+
+  const suodatetut = globaaliSarjaData.filter(s => {
+    return s.sarja.toLowerCase().includes(hakusana) || 
+           s.kirjailija.toLowerCase().includes(hakusana);
+  });
+
+  renderSarjat(suodatetut);
+}
+
+// ==========================================
+// 4. Älykäs Tilastointi
+// ==========================================
 function luoTilastot(kirjat) {
   const tilastoDiv = document.getElementById("tilastot-sisalto");
-  
+  if (!tilastoDiv) return;
+
   const tilastoKelpoiset = kirjat.filter(k => k.luku_tilastoihin !== false);
   const luetut = tilastoKelpoiset.filter(k => k.luettu_pvm !== null);
   const hyllyssa = kirjat.filter(k => k.hyllyssa);
@@ -427,7 +551,9 @@ function toggleNaytaKaikki(btn) {
   }
 }
 
-// 7. Leaderboard Laskenta & Valikkojen alustus
+// ==========================================
+// 5. Leaderboard Laskenta & Renderöinti
+// ==========================================
 function alustaLeaderboard(kirjat) {
   const tilastoKelpoiset = kirjat.filter(k => k.luku_tilastoihin !== false);
   const luetut = tilastoKelpoiset.filter(k => k.luettu_pvm !== null);
@@ -467,12 +593,11 @@ function alustaLeaderboard(kirjat) {
       const jarjestetyt = Object.entries(ryhmitelty)
         .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'fi'));
 
-      // UUSI DYNAMIIKKA: Maksimipisteet ovat listan pituus (korkeintaan 10 p)
+      // Dynamiikka: Pienellä listalla maksimipisteet = listan pituus
       const listaPituus = jarjestetyt.length;
       const maxPisteet = Math.min(listaPituus, 10);
 
       vuosiSijoitukset[vuosi] = jarjestetyt.map(([nimi, sivut], idx) => {
-        // Ensimmäinen saa maxPisteet, toinen maxPisteet - 1, jne. Minimi 0 p.
         const lasketutPisteet = Math.max(0, maxPisteet - idx);
 
         return {
@@ -557,7 +682,6 @@ function muutaLeaderboardKategoria(kat) {
   paivitaLeaderboardNakyma();
 }
 
-// 8. Datan laskenta & Taulukon dynaaminen renderöinti
 function paivitaLeaderboardNakyma() {
   const container = document.getElementById("leaderboard-taulukko-container");
   const vuosiSelect = document.getElementById("leaderboardVuosiSelect");
@@ -576,7 +700,6 @@ function paivitaLeaderboardNakyma() {
   }
 }
 
-// 8a. Yksittäisen Vuoden Tilaston Renderöinti
 function renderYksittainenVuositilasto(container, vuosi, data) {
   if (data.length === 0) {
     container.innerHTML = `<p style='text-align:center;'>Ei lukudataa vuodelta ${vuosi}.</p>`;
@@ -627,26 +750,25 @@ function renderYksittainenVuositilasto(container, vuosi, data) {
   container.innerHTML = html;
 }
 
-// 8b. Kumulatiivisen (All-Time) Tilaston Renderöinti
 function renderKumulatiivinenTilasto(container, kohdeVuosi, vuosiSijoitukset) {
   const vuodet = globaaliLeaderboardData.vuodet.filter(v => v <= kohdeVuosi);
 
-  // Päivitetty vertailufunktio uuden Tiebreak-säännön mukaan
+  // Vertailulogikka Tiebreak-säännön mukaan
   const vertaileEntiteetteja = (a, b) => {
     if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
     if (b.gold !== a.gold) return b.gold - a.gold;
     if (b.silver !== a.silver) return b.silver - a.silver;
     if (b.bronze !== a.bronze) return b.bronze - a.bronze;
-    if (b.top10Appearances !== a.top10Appearances) return b.top10Appearances - a.top10Appearances; // UUSI: Top 10 -vuodet
-    return a.nimi.localeCompare(b.nimi, 'fi'); // Aakkosjärjestys
+    if (b.top10Appearances !== a.top10Appearances) return b.top10Appearances - a.top10Appearances;
+    return a.nimi.localeCompare(b.nimi, 'fi');
   };
 
   const ovatkoTasan = (a, b) => {
     return a.totalPoints === b.totalPoints &&
-          a.gold === b.gold &&
-          a.silver === b.silver &&
-          a.bronze === b.bronze &&
-          a.top10Appearances === b.top10Appearances;
+           a.gold === b.gold &&
+           a.silver === b.silver &&
+           a.bronze === b.bronze &&
+           a.top10Appearances === b.top10Appearances;
   };
 
   const entiteetit = {};
@@ -704,9 +826,10 @@ function renderKumulatiivinenTilasto(container, kohdeVuosi, vuosiSijoitukset) {
     (vuosiSijoitukset[v] || []).forEach(data => {
       if (data.points === 0) return;
       if (!vanhatEntiteetit[data.nimi]) {
-        vanhatEntiteetit[data.nimi] = { nimi: data.nimi, totalPoints: 0, gold: 0, silver: 0, bronze: 0 };
+        vanhatEntiteetit[data.nimi] = { nimi: data.nimi, totalPoints: 0, gold: 0, silver: 0, bronze: 0, top10Appearances: 0 };
       }
       vanhatEntiteetit[data.nimi].totalPoints += data.points;
+      vanhatEntiteetit[data.nimi].top10Appearances += 1;
       if (data.rank === 1) vanhatEntiteetit[data.nimi].gold += 1;
       if (data.rank === 2) vanhatEntiteetit[data.nimi].silver += 1;
       if (data.rank === 3) vanhatEntiteetit[data.nimi].bronze += 1;
@@ -727,7 +850,6 @@ function renderKumulatiivinenTilasto(container, kohdeVuosi, vuosiSijoitukset) {
     vanhatSijoilla[item.nimi] = vanhaSijaCounter;
   });
 
-  // Muutostekstien koonnti
   allTimeRanked.forEach((e) => {
     const nykyinenRank = e.displayRank;
     const esiintynytNykyisena = e.vuosihistoria[kohdeVuosi] !== undefined;
