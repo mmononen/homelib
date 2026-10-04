@@ -1,6 +1,8 @@
 let kaikkiKirjat = [];
+let globaaliLeaderboardData = {};
+let valittuLeaderboardKategoria = "kirjailija";
 
-// 1. Datan haku JSON-tiedostosta
+// 1. Datan haku JSON-tiedostosta & Alustukset
 document.addEventListener("DOMContentLoaded", () => {
   fetch("books.json")
     .then(response => response.json())
@@ -9,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       jarjestaKirjat(kaikkiKirjat);
       paivitaKirjalista(kaikkiKirjat);
       luoTilastot(kaikkiKirjat);
+      alustaLeaderboard(kaikkiKirjat);
     })
     .catch(error => console.error("Virhe ladattaessa kirjadataa:", error));
 });
@@ -16,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // 2. Järjestäminen (Ensimmäisen kirjailijan nimi -> Teoksen nimi)
 function jarjestaKirjat(kirjat) {
   kirjat.sort((a, b) => {
-    // Otetaan ensimmäinen kirjailija ennen vinoviivaa
     const kirjailijaA = (a.kirjailija || "").split("/")[0].trim();
     const kirjailijaB = (b.kirjailija || "").split("/")[0].trim();
 
@@ -43,7 +45,6 @@ function paivitaKirjalista(kirjat) {
 
     const luettuTeksti = kirja.luettu_pvm ? `Luettu ${kirja.luettu_pvm}` : "Lukematon";
     
-    // Keltainen tagi, jos kirja on luettu
     const luettuStatus = kirja.luettu_pvm 
       ? '<span class="tila-tagi tila-luettu">Luettu</span>' 
       : '';
@@ -102,7 +103,7 @@ function suodataKirjat() {
   paivitaKirjalista(suodatetut);
 }
 
-// 5. Näkymän vaihto (Kirjat / Tilastot)
+// 5. Näkymän vaihto (Kirjat / Tilastot / Leaderboard)
 function naytaNakyma(nakymaId) {
   document.querySelectorAll('.nakyma').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
@@ -111,11 +112,10 @@ function naytaNakyma(nakymaId) {
   document.getElementById(`btn-${nakymaId}`).classList.add('active');
 }
 
-// 6. Älykäs Tilastointi (Yksi yhteinen valikko: Vuodet siirretty viimeiseksi)
+// 6. Älykäs Tilastointi
 function luoTilastot(kirjat) {
   const tilastoDiv = document.getElementById("tilastot-sisalto");
   
-  // Suodatetaan lukutilastoihin hyväksyttävät kirjat
   const tilastoKelpoiset = kirjat.filter(k => k.luku_tilastoihin !== false);
   const luetut = tilastoKelpoiset.filter(k => k.luettu_pvm !== null);
   const hyllyssa = kirjat.filter(k => k.hyllyssa);
@@ -125,14 +125,12 @@ function luoTilastot(kirjat) {
 
   const laskeSivut = lista => lista.reduce((sum, k) => sum + (k.sivumaara || 0), 0);
 
-  // Etsitään kaikki vuodet, jolloin kirjoja on luettu (laskevassa järjestyksessä)
   const luetutVuodet = [...new Set(
     luetut
       .map(k => k.luettu_pvm ? new Date(k.luettu_pvm).getFullYear() : null)
       .filter(v => v !== null && !isNaN(v))
   )].sort((a, b) => b - a);
 
-  // VINOVIIVA-EROTTELU (Ohittaa null / tyhjät arvot)
   const ryhmitteleMetadata = (kirjalista, avain) => {
     return kirjalista.reduce((acc, k) => {
       const raakaArvo = k[avain];
@@ -166,7 +164,6 @@ function luoTilastot(kirjat) {
     }, {});
   };
 
-  // Generoi yksittäisten kirjojen listauksen sivumäärän mukaan järjestettynä
   const renderKirjatPituudessaan = (kirjalista) => {
     const jarjestetyt = [...kirjalista].sort((a, b) => {
       const sivutErotus = (b.sivumaara || 0) - (a.sivumaara || 0);
@@ -220,7 +217,6 @@ function luoTilastot(kirjat) {
     return html;
   };
 
-  // Generoi tilastorivit (Sijanumero + Aakkostus samalla sijalla)
   const renderKokoLista = (ryhmiteltyData, naytaHyllyInfo = true) => {
     const rivit = Object.entries(ryhmiteltyData)
       .sort((a, b) => {
@@ -343,7 +339,6 @@ function luoTilastot(kirjat) {
     `;
   };
 
-  // DYNAMIIKKA: Päivittää tilastonäkymän valitun näkymän mukaan
   window.paivitaTilastoNakyma = function(valinta) {
     const säiliö = document.getElementById("aktiivinen-tilasto-sisalto");
 
@@ -363,7 +358,6 @@ function luoTilastot(kirjat) {
     }
   };
 
-  // Valikko-HTML: Vuosikohtaiset suodatukset siirretty alimmaiseksi
   const tilastoValikkoHTML = `
     <div class="tilasto-kortti" style="grid-column: 1 / -1; background: var(--eos-card-bg); border: 1px solid var(--eos-cyan);">
       <h3 style="color: var(--eos-cyan); margin-top: 0;">📊 Valitse näytettävä tilasto-osio</h3>
@@ -383,7 +377,6 @@ function luoTilastot(kirjat) {
     </div>
   `;
 
-  // YLEISKATSAUS-KORTTI
   const hyllyLuettuKplProsentti = hyllyssaTilastokelpoiset.length > 0 
     ? ((hyllyssaLuetut.length / hyllyssaTilastokelpoiset.length) * 100).toFixed(1) 
     : "0.0";
@@ -411,18 +404,15 @@ function luoTilastot(kirjat) {
     </div>
   `;
 
-  // Kootaan näkymä
   tilastoDiv.innerHTML = `
     ${yleiskatsausHTML}
     ${tilastoValikkoHTML}
     <div id="aktiivinen-tilasto-sisalto" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; grid-column: 1 / -1;"></div>
   `;
 
-  // Ladataan oletuksena 'Kaikki luetut' näkyviin
   paivitaTilastoNakyma("kaikki-luetut");
 }
 
-// Tilastokortin "Näytä kaikki"-painikkeen toiminto
 function toggleNaytaKaikki(btn) {
   const piilotetut = btn.previousElementSibling;
   const onPiilossa = piilotetut.style.display === "none";
@@ -435,4 +425,363 @@ function toggleNaytaKaikki(btn) {
     const kpl = piilotetut.querySelectorAll("li").length;
     btn.innerText = `Näytä kaikki (+${kpl})`;
   }
+}
+
+// 7. Leaderboard Laskenta & Valikkojen alustus
+function alustaLeaderboard(kirjat) {
+  const tilastoKelpoiset = kirjat.filter(k => k.luku_tilastoihin !== false);
+  const luetut = tilastoKelpoiset.filter(k => k.luettu_pvm !== null);
+
+  const vuodetAsc = [...new Set(
+    luetut
+      .map(k => k.luettu_pvm ? new Date(k.luettu_pvm).getFullYear() : null)
+      .filter(v => v !== null && !isNaN(v))
+  )].sort((a, b) => a - b);
+
+  const kategoriat = ["kirjailija", "kustantaja", "suomentaja", "alkuperamaa", "julkaisuvuosi"];
+
+  globaaliLeaderboardData = {
+    vuodet: vuodetAsc,
+    kategoriat: {}
+  };
+
+  kategoriat.forEach(kat => {
+    const vuosiSijoitukset = {};
+
+    vuodetAsc.forEach(vuosi => {
+      const vuodenKirjat = luetut.filter(k => new Date(k.luettu_pvm).getFullYear() === vuosi);
+      
+      const ryhmitelty = vuodenKirjat.reduce((acc, k) => {
+        const raakaArvo = k[kat];
+        if (!raakaArvo && raakaArvo !== 0) return acc;
+        const arvot = typeof raakaArvo === 'string' 
+          ? raakaArvo.split('/').map(s => s.trim()).filter(s => s.length > 0)
+          : [raakaArvo];
+
+        arvot.forEach(a => {
+          acc[a] = (acc[a] || 0) + (k.sivumaara || 0);
+        });
+        return acc;
+      }, {});
+
+      const jarjestetyt = Object.entries(ryhmitelty)
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'fi'));
+
+      vuosiSijoitukset[vuosi] = jarjestetyt.map(([nimi, sivut], idx) => ({
+        nimi,
+        sivut,
+        rank: idx + 1,
+        points: idx < 10 ? (10 - idx) : 0
+      }));
+    });
+
+    globaaliLeaderboardData.kategoriat[kat] = vuosiSijoitukset;
+  });
+
+  alustaLeaderboardValikot();
+  paivitaLeaderboardNakyma();
+}
+
+function alustaLeaderboardValikot() {
+  const container = document.getElementById("leaderboard-sisalto");
+  if (!container) return;
+
+  const vuodet = globaaliLeaderboardData.vuodet;
+  const nykyhetkiVuosi = vuodet[vuodet.length - 1];
+
+  const valikotHTML = `
+    <!-- Pisteiden laskentatavan info-laatikko -->
+    <div class="tilasto-kortti" style="grid-column: 1 / -1; background: var(--eos-card-bg); border-left: 4px solid var(--eos-purple); margin-bottom: 1rem; font-size: 0.9rem; line-height: 1.4;">
+      <h3 style="margin-top: 0; color: var(--eos-purple); font-size: 1rem;">ℹ️ Miten pisteet lasketaan?</h3>
+      <p style="margin-bottom: 0.5rem;">
+        Jokaisen kalenterivuoden <strong>Top 10</strong> (luettujen sivumäärien mukaan) palkitaan Leaderboard-pisteillä:
+      </p>
+      <div style="font-family: monospace; font-size: 0.85rem; color: var(--eos-cyan); background: rgba(0, 0, 0, 0.3); padding: 0.5rem; border-radius: 4px; display: inline-block;">
+        1. sija = 10 p &bull; 2. sija = 9 p &bull; 3. sija = 8 p &bull; ... &bull; 10. sija = 1 p
+      </div>
+      <p style="margin-top: 0.5rem; margin-bottom: 0; color: var(--eos-text-muted);">
+        <strong>Kumulatiivinen All-Time -näkymä</strong> summaa nämä vuotuiset pisteet yhteen koko historialta valittuun vuoteen asti. <strong>Yksittäinen vuositilasto</strong> näyttää sen hetkisen vuoden luetut sivut ja jaetut pisteet.
+      </p>
+    </div>
+
+    <!-- Valinnat -->
+    <div class="tilasto-kortti" style="grid-column: 1 / -1; background: var(--eos-card-bg); border: 1px solid var(--eos-cyan); margin-bottom: 1rem; display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+      <div>
+        <label for="leaderboardKategoriaSelect" style="margin-right: 0.5rem; font-weight: bold;">Kategoria:</label>
+        <select id="leaderboardKategoriaSelect" onchange="muutaLeaderboardKategoria(this.value)" style="padding: 0.45rem; background: #000; color: #fff; border: 1px solid var(--eos-cyan); border-radius: 4px; font-size: 0.95rem;">
+          <option value="kirjailija">Kirjailijat</option>
+          <option value="kustantaja">Kustantajat</option>
+          <option value="suomentaja">Suomentajat</option>
+          <option value="alkuperamaa">Alkuperämaat</option>
+          <option value="julkaisuvuosi">Julkaisuvuodet</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="leaderboardTyyppiSelect" style="margin-right: 0.5rem; font-weight: bold;">Näkymätyyppi:</label>
+        <select id="leaderboardTyyppiSelect" onchange="paivitaLeaderboardNakyma()" style="padding: 0.45rem; background: #000; color: #fff; border: 1px solid var(--eos-cyan); border-radius: 4px; font-size: 0.95rem;">
+          <option value="kumulatiivinen">Kumulatiivinen (All-Time asti)</option>
+          <option value="vuositilasto">Yksittäinen vuositilasto</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="leaderboardVuosiSelect" style="margin-right: 0.5rem; font-weight: bold;">Vuosi:</label>
+        <select id="leaderboardVuosiSelect" onchange="paivitaLeaderboardNakyma()" style="padding: 0.45rem; background: #000; color: #fff; border: 1px solid var(--eos-cyan); border-radius: 4px; font-size: 0.95rem;">
+          ${[...vuodet].reverse().map(v => `<option value="${v}">${v}${v === nykyhetkiVuosi ? '(Viimeisin / Nykyhetki)' : ''}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <div id="leaderboard-taulukko-container"></div>
+  `;
+
+  container.innerHTML = valikotHTML;
+}
+
+function muutaLeaderboardKategoria(kat) {
+  valittuLeaderboardKategoria = kat;
+  paivitaLeaderboardNakyma();
+}
+
+// 8. Datan laskenta & Taulukon dynaaminen renderöinti
+function paivitaLeaderboardNakyma() {
+  const container = document.getElementById("leaderboard-taulukko-container");
+  const vuosiSelect = document.getElementById("leaderboardVuosiSelect");
+  const tyyppiSelect = document.getElementById("leaderboardTyyppiSelect");
+
+  if (!container || !vuosiSelect || !tyyppiSelect) return;
+
+  const kohdeVuosi = Number(vuosiSelect.value);
+  const nakymaTyyppi = tyyppiSelect.value;
+  const vuosiSijoitukset = globaaliLeaderboardData.kategoriat[valittuLeaderboardKategoria];
+
+  if (nakymaTyyppi === "vuositilasto") {
+    renderYksittainenVuositilasto(container, kohdeVuosi, vuosiSijoitukset[kohdeVuosi] || []);
+  } else {
+    renderKumulatiivinenTilasto(container, kohdeVuosi, vuosiSijoitukset);
+  }
+}
+
+// 8a. Yksittäisen Vuoden Tilaston Renderöinti
+function renderYksittainenVuositilasto(container, vuosi, data) {
+  if (data.length === 0) {
+    container.innerHTML = `<p style='text-align:center;'>Ei lukudataa vuodelta ${vuosi}.</p>`;
+    return;
+  }
+
+  let html = `
+    <div class="tilasto-kortti" style="overflow-x: auto;">
+      <h3 style="margin-bottom: 1rem; color: var(--eos-cyan);">Vuoden ${vuosi} Vuositilasto (Sivumäärän mukaan)</h3>
+      <table class="leaderboard-taulukko">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nimi</th>
+            <th>Luetut sivut</th>
+            <th>Leaderboard-pisteet</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  let nykyinenSija = 1;
+  data.forEach((item, index) => {
+    if (index > 0 && item.sivut !== data[index - 1].sivut) {
+      nykyinenSija = index + 1;
+    }
+
+    const pisteetTeksti = item.points > 0 
+      ? `<strong style="color: var(--eos-cyan);">${item.points} p</strong>` 
+      : `<span style="color: var(--eos-text-muted);">-</span>`;
+
+    html += `
+      <tr>
+        <td><strong>${nykyinenSija}.</strong></td>
+        <td><strong>${item.nimi}</strong></td>
+        <td><strong>${item.sivut} s.</strong></td>
+        <td>${pisteetTeksti}</td>
+      </tr>
+    `;
+  });
+
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  container.innerHTML = html;
+}
+
+// 8b. Kumulatiivisen (All-Time) Tilaston Renderöinti
+function renderKumulatiivinenTilasto(container, kohdeVuosi, vuosiSijoitukset) {
+  const vuodet = globaaliLeaderboardData.vuodet.filter(v => v <= kohdeVuosi);
+
+  const vertaileEntiteetteja = (a, b) => {
+    if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
+    if (b.gold !== a.gold) return b.gold - a.gold;
+    if (b.silver !== a.silver) return b.silver - a.silver;
+    if (b.bronze !== a.bronze) return b.bronze - a.bronze;
+    return a.nimi.localeCompare(b.nimi, 'fi');
+  };
+
+  const ovatkoTasan = (a, b) => {
+    return a.totalPoints === b.totalPoints &&
+           a.gold === b.gold &&
+           a.silver === b.silver &&
+           a.bronze === b.bronze;
+  };
+
+  const entiteetit = {};
+
+  vuodet.forEach(vuosi => {
+    (vuosiSijoitukset[vuosi] || []).forEach(data => {
+      if (data.points === 0) return;
+
+      if (!entiteetit[data.nimi]) {
+        entiteetit[data.nimi] = {
+          nimi: data.nimi,
+          totalPoints: 0,
+          gold: 0,
+          silver: 0,
+          bronze: 0,
+          top10Appearances: 0,
+          bestRank: 999,
+          bestYearInfo: "-",
+          vuosihistoria: {}
+        };
+      }
+
+      const e = entiteetit[data.nimi];
+      e.totalPoints += data.points;
+      e.top10Appearances += 1;
+      e.vuosihistoria[vuosi] = data.rank;
+
+      if (data.rank === 1) e.gold += 1;
+      if (data.rank === 2) e.silver += 1;
+      if (data.rank === 3) e.bronze += 1;
+
+      if (data.rank < e.bestRank) {
+        e.bestRank = data.rank;
+        e.bestYearInfo = `${vuosi} (${data.rank}.)`;
+      }
+    });
+  });
+
+  const allTimeRankedRaw = Object.values(entiteetit).sort(vertaileEntiteetteja);
+
+  let nykyinenSija = 1;
+  const allTimeRanked = allTimeRankedRaw.map((item, index) => {
+    if (index > 0) {
+      const edellinen = allTimeRankedRaw[index - 1];
+      if (!ovatkoTasan(item, edellinen)) {
+        nykyinenSija = index + 1;
+      }
+    }
+    return { ...item, displayRank: nykyinenSija };
+  });
+
+  // Lasketaan edellisen vuoden tilanne sijoitusmuutoksia varten
+  const vanhatEntiteetit = {};
+  vuodet.filter(v => v < kohdeVuosi).forEach(v => {
+    (vuosiSijoitukset[v] || []).forEach(data => {
+      if (data.points === 0) return;
+      if (!vanhatEntiteetit[data.nimi]) {
+        vanhatEntiteetit[data.nimi] = { nimi: data.nimi, totalPoints: 0, gold: 0, silver: 0, bronze: 0 };
+      }
+      vanhatEntiteetit[data.nimi].totalPoints += data.points;
+      if (data.rank === 1) vanhatEntiteetit[data.nimi].gold += 1;
+      if (data.rank === 2) vanhatEntiteetit[data.nimi].silver += 1;
+      if (data.rank === 3) vanhatEntiteetit[data.nimi].bronze += 1;
+    });
+  });
+
+  const vanhatRankedRaw = Object.values(vanhatEntiteetit).sort(vertaileEntiteetteja);
+
+  let vanhaSijaCounter = 1;
+  const vanhatSijoilla = {};
+  vanhatRankedRaw.forEach((item, index) => {
+    if (index > 0) {
+      const edellinen = vanhatRankedRaw[index - 1];
+      if (!ovatkoTasan(item, edellinen)) {
+        vanhaSijaCounter = index + 1;
+      }
+    }
+    vanhatSijoilla[item.nimi] = vanhaSijaCounter;
+  });
+
+  // Muutostekstien koonnti
+  allTimeRanked.forEach((e) => {
+    const nykyinenRank = e.displayRank;
+    const esiintynytNykyisena = e.vuosihistoria[kohdeVuosi] !== undefined;
+
+    if (!esiintynytNykyisena) {
+      const aiemmatVuodet = Object.keys(e.vuosihistoria).map(Number).filter(v => v < kohdeVuosi);
+      if (aiemmatVuodet.length > 0) {
+        const viimeisin = Math.max(...aiemmatVuodet);
+        e.muutosTeksti = `<span style="color: var(--eos-text-muted)">Viimeksi ${viimeisin}</span>`;
+      } else {
+        e.muutosTeksti = `-`;
+      }
+    } else {
+      const vanhaRank = vanhatSijoilla[e.nimi];
+      if (vanhaRank === undefined) {
+        e.muutosTeksti = `<span class="tila-tagi" style="background: var(--eos-purple); color: #fff;">UUSI</span>`;
+      } else {
+        const erotus = vanhaRank - nykyinenRank;
+        if (erotus > 0) {
+          e.muutosTeksti = `<span style="color: var(--status-green-text)">▲ +${erotus}</span>`;
+        } else if (erotus < 0) {
+          e.muutosTeksti = `<span style="color: var(--status-red-text)">▼ ${erotus}</span>`;
+        } else {
+          e.muutosTeksti = `<span style="color: var(--eos-text-muted)">=</span>`;
+        }
+      }
+    }
+  });
+
+  if (allTimeRanked.length === 0) {
+    container.innerHTML = "<p style='text-align:center;'>Ei kumulatiivista dataa valitulle vuodelle.</p>";
+    return;
+  }
+
+  let html = `
+    <div class="tilasto-kortti" style="overflow-x: auto;">
+      <h3 style="margin-bottom: 1rem; color: var(--eos-cyan);">Kumulatiivinen All-Time -tilanne vuoteen ${kohdeVuosi} asti</h3>
+      <table class="leaderboard-taulukko">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nimi</th>
+            <th>Pisteet</th>
+            <th>Muutos</th>
+            <th>Mitalit (🥇/🥈/🥉)</th>
+            <th>Top 10 -vuodet</th>
+            <th>Paras vuosi</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  allTimeRanked.forEach((item) => {
+    html += `
+      <tr>
+        <td><strong>${item.displayRank}.</strong></td>
+        <td><strong>${item.nimi}</strong></td>
+        <td><strong style="color: var(--eos-cyan);">${item.totalPoints} p</strong></td>
+        <td>${item.muutosTeksti}</td>
+        <td>🥇 ${item.gold} | 🥈 ${item.silver} | 🥉 ${item.bronze}</td>
+        <td>${item.top10Appearances} v.</td>
+        <td>${item.bestYearInfo}</td>
+      </tr>
+    `;
+  });
+
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  container.innerHTML = html;
 }

@@ -383,4 +383,45 @@ main {
   .tilasto-grid {
     grid-template-columns: 1fr;
   }
+
+    /* LEADERBOARD TYYLIT */
+  .leaderboard-taulukko {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    text-align: left;
+  }
+
+  .leaderboard-taulukko th, 
+  .leaderboard-taulukko td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px dashed var(--eos-border);
+    white-space: nowrap;
+  }
+
+  .leaderboard-taulukko th {
+    background-color: #131920;
+    color: var(--eos-cyan);
+    font-weight: 700;
+    border-bottom: 2px solid var(--eos-purple);
+  }
+
+  .leaderboard-taulukko tr:hover {
+    background-color: var(--eos-surface-hover);
+  }
+
+  .sijoitus-badge {
+    display: inline-block;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    background: var(--eos-border);
+    color: var(--eos-text);
+  }
+
+  /* Kärkikolmikkovärit vuosisarakkeissa */
+  .sijoitus-badge.sija-1 { background: #ffd700; color: #000; }
+  .sijoitus-badge.sija-2 { background: #c0c0c0; color: #000; }
+  .sijoitus-badge.sija-3 { background: #cd7f32; color: #fff; }
 }
