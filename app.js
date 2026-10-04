@@ -120,7 +120,7 @@ function naytaNakyma(nakymaId) {
 }
 
 // ==========================================
-// 3. Kirjasarjat -osion käsittely
+// 3. Kirjasarjat -osion käsittely (PÄIVITETTY)
 // ==========================================
 function alustaSarjat(kirjat) {
   const sarjatMap = {};
@@ -139,9 +139,19 @@ function alustaSarjat(kirjat) {
       if (!sarjatMap[sarjanNimi]) {
         sarjatMap[sarjanNimi] = {
           sarja: sarjanNimi,
-          kirjailija: kirja.kirjailija || "Tuntematon kirjailija",
+          tekijatSet: new Set(),
           osat: []
         };
+      }
+
+      // Kerätään kaikki tekijät mukaan (erotellaan jos tekijöissä on / -merkkejä)
+      if (kirja.kirjailija) {
+        kirja.kirjailija.split('/').forEach(t => {
+          const siistiTekija = t.trim();
+          if (siistiTekija.length > 0) {
+            sarjatMap[sarjanNimi].tekijatSet.add(siistiTekija);
+          }
+        });
       }
 
       sarjatMap[sarjanNimi].osat.push({
@@ -149,13 +159,16 @@ function alustaSarjat(kirjat) {
         nimi: teoksenNimi,
         vuosi: kirja.julkaisuvuosi,
         luettu: kirja.luettu_pvm !== null,
-        hyllyssa: kirja.hyllyssa
+        hyllyssa: kirja.hyllyssa,
+        kirjailija: kirja.kirjailija || ""
       });
     }
   });
 
   globaaliSarjaData = Object.values(sarjatMap).map(s => {
     s.osat.sort((a, b) => a.osa - b.osa);
+    s.kirjailija = Array.from(s.tekijatSet).join(" / ") || "Tuntematon tekijä";
+    delete s.tekijatSet;
     return s;
   });
 
@@ -593,7 +606,6 @@ function alustaLeaderboard(kirjat) {
       const jarjestetyt = Object.entries(ryhmitelty)
         .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'fi'));
 
-      // Dynamiikka: Pienellä listalla maksimipisteet = listan pituus
       const listaPituus = jarjestetyt.length;
       const maxPisteet = Math.min(listaPituus, 10);
 
@@ -753,7 +765,6 @@ function renderYksittainenVuositilasto(container, vuosi, data) {
 function renderKumulatiivinenTilasto(container, kohdeVuosi, vuosiSijoitukset) {
   const vuodet = globaaliLeaderboardData.vuodet.filter(v => v <= kohdeVuosi);
 
-  // Vertailulogikka Tiebreak-säännön mukaan
   const vertaileEntiteetteja = (a, b) => {
     if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
     if (b.gold !== a.gold) return b.gold - a.gold;
@@ -820,7 +831,6 @@ function renderKumulatiivinenTilasto(container, kohdeVuosi, vuosiSijoitukset) {
     return { ...item, displayRank: nykyinenSija };
   });
 
-  // Lasketaan edellisen vuoden tilanne sijoitusmuutoksia varten
   const vanhatEntiteetit = {};
   vuodet.filter(v => v < kohdeVuosi).forEach(v => {
     (vuosiSijoitukset[v] || []).forEach(data => {
