@@ -245,8 +245,132 @@ function suodataSarjat() {
 }
 
 // ==========================================
-// 4. Älykäs Tilastointi (LISÄTTY 7. KORTTI)
+// 4. Älykäs Tilastointi & Kirjojen ikälaskenta
 // ==========================================
+
+// Apufunktio kirjan iän laskemiseen lukemishetkellä (vuoden tarkkuudella)
+function laskeKirjanIka(kirja) {
+  if (!kirja.luettu_pvm || !kirja.julkaisuvuosi) return null;
+  const luettuVuosi = new Date(kirja.luettu_pvm).getFullYear();
+  const julkaisuvuosi = parseInt(kirja.julkaisuvuosi, 10);
+  if (isNaN(luettuVuosi) || isNaN(julkaisuvuosi)) return null;
+  const ika = luettuVuosi - julkaisuvuosi;
+  return ika >= 0 ? ika : 0;
+}
+
+// 1. KORTTI: Kirjat iän mukaan luettaessa (Vanhimmasta nuorimpaan) + Keskiarvo ja mediaani
+function renderKirjojenIat(kirjalista) {
+  const iatData = kirjalista
+    .map(k => ({ kirja: k, ika: laskeKirjanIka(k) }))
+    .filter(item => item.ika !== null)
+    .sort((a, b) => b.ika - a.ika || (a.kirja.nimi || "").localeCompare(b.kirja.nimi || "", 'fi'));
+
+  if (iatData.length === 0) return "<ul><li><em>Ei dataa</em></li></ul>";
+
+  // Keskiarvon ja mediaanin laskenta
+  const iatSert = iatData.map(d => d.ika).sort((a, b) => a - b);
+  const summa = iatSert.reduce((a, b) => a + b, 0);
+  const keskiarvo = (summa / iatSert.length).toFixed(1);
+
+  let mediaani = 0;
+  const n = iatSert.length;
+  if (n % 2 === 1) {
+    mediaani = iatSert[Math.floor(n / 2)];
+  } else {
+    mediaani = ((iatSert[n / 2 - 1] + iatSert[n / 2]) / 2).toFixed(1);
+  }
+
+  let nykyinenSija = 1;
+  const listatutSijoilla = iatData.map((item, index) => {
+    if (index > 0 && iatData[index - 1].ika !== item.ika) {
+      nykyinenSija = index + 1;
+    }
+    return { sija: nykyinenSija, ...item };
+  });
+
+  const top10 = listatutSijoilla.slice(0, 10);
+  const loput = listatutSijoilla.slice(10);
+
+  const luoRivitHTML = list => list.map(item => {
+    const luettuVuosi = new Date(item.kirja.luettu_pvm).getFullYear();
+    return `
+      <li style="margin-bottom: 0.5rem;">
+        <div>
+          <span class="sijanumero">${item.sija}.</span> <strong>${item.kirja.nimi}</strong>
+          <div style="font-size: 0.78rem; color: var(--eos-text-muted); margin-left: 1.5rem;">
+            ${item.kirja.kirjailija || "Tuntematon kirjailija"} (ilm. ${item.kirja.julkaisuvuosi}, luettu ${luettuVuosi})
+          </div>
+        </div>
+        <div style="text-align: right; white-space: nowrap;">
+          <strong>${item.ika} v.</strong>
+        </div>
+      </li>
+    `;
+  }).join('');
+
+  let html = `
+    <div style="background: rgba(0, 243, 255, 0.05); border-left: 3px solid var(--eos-cyan); padding: 0.6rem; margin-bottom: 0.8rem; font-size: 0.88rem;">
+      <div>Keskiarvo: <strong style="color: var(--eos-cyan);">${keskiarvo} v.</strong></div>
+      <div>Mediaani: <strong style="color: var(--eos-cyan);">${mediaani} v.</strong></div>
+    </div>
+    <ul>${luoRivitHTML(top10)}</ul>
+  `;
+
+  if (loput.length > 0) {
+    html += `
+      <div class="piilotetut-rivit" style="display: none;">
+        <ul>${luoRivitHTML(loput)}</ul>
+      </div>
+      <button class="btn-nayta-lisaa" onclick="toggleNaytaKaikki(this)">
+        Näytä kaikki (+${loput.length})
+      </button>
+    `;
+  }
+
+  return html;
+}
+
+// 2. KORTTI: Kirjojen ikäryhmät luettaessa
+function renderIkaRyhmat(kirjalista) {
+  const ryhmat = [
+    { nimi: "1. Uutuudet (0–1 vuotta)", min: 0, max: 1, kpl: 0, sivut: 0 },
+    { nimi: "2. Tuoreet / Ajankohtaiset (1–3 vuotta)", min: 1, max: 3, kpl: 0, sivut: 0 },
+    { nimi: "3. Nykykirjallisuus (3–10 vuotta)", min: 3, max: 10, kpl: 0, sivut: 0 },
+    { nimi: "4. Vanhempi taustakirjallisuus (10–30 vuotta)", min: 10, max: 30, kpl: 0, sivut: 0 },
+    { nimi: "5. Modernit klassikot ja klassikot (30–70 vuotta)", min: 30, max: 70, kpl: 0, sivut: 0 },
+    { nimi: "6. Klassikot 70+ vuotta", min: 70, max: Infinity, kpl: 0, sivut: 0 }
+  ];
+
+  kirjalista.forEach(k => {
+    const ika = laskeKirjanIka(k);
+    if (ika === null) return;
+
+    const r = ryhmat.find(item => ika >= item.min && ika < item.max);
+    if (r) {
+      r.kpl += 1;
+      r.sivut += (k.sivumaara || 0);
+    }
+  });
+
+  return `
+    <ul>
+      ${ryhmat.map(r => `
+        <li style="margin-bottom: 0.5rem;">
+          <div>
+            <strong>${r.nimi}</strong>
+            <div style="font-size: 0.78rem; color: var(--eos-text-muted);">
+              ${r.kpl} kpl &bull; ${r.sivut} s.
+            </div>
+          </div>
+          <div style="text-align: right; white-space: nowrap;">
+            <strong style="color: var(--eos-cyan);">${r.kpl} kpl</strong>
+          </div>
+        </li>
+      `).join('')}
+    </ul>
+  `;
+}
+
 function luoTilastot(kirjat) {
   const tilastoDiv = document.getElementById("tilastot-sisalto");
   if (!tilastoDiv) return;
@@ -485,6 +609,17 @@ function luoTilastot(kirjat) {
       <div class="tilasto-kortti">
         <h3>Sivumäärät (Alkuperämaa)</h3>
         ${renderKokoLista(maat, naytaHyllyInfo)}
+      </div>
+
+      <!-- SIIRRETTY LOPPUUN -->
+      <div class="tilasto-kortti">
+        <h3>Kirjat iän mukaan luettaessa (Vanhimmasta nuorimpaan)</h3>
+        ${renderKirjojenIat(kohdeKirjat)}
+      </div>
+
+      <div class="tilasto-kortti">
+        <h3>Kirjojen ikäryhmät luettaessa</h3>
+        ${renderIkaRyhmat(kohdeKirjat)}
       </div>
     `;
   };
