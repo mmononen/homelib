@@ -341,6 +341,8 @@ function renderIkaRyhmat(kirjalista) {
     { nimi: "6. Klassikot 70+ vuotta", min: 70, max: Infinity, kpl: 0, sivut: 0 }
   ];
 
+  let yhteensaKpl = 0;
+
   kirjalista.forEach(k => {
     const ika = laskeKirjanIka(k);
     if (ika === null) return;
@@ -349,24 +351,32 @@ function renderIkaRyhmat(kirjalista) {
     if (r) {
       r.kpl += 1;
       r.sivut += (k.sivumaara || 0);
+      yhteensaKpl += 1;
     }
   });
 
   return `
     <ul>
-      ${ryhmat.map(r => `
-        <li style="margin-bottom: 0.5rem;">
-          <div>
-            <strong>${r.nimi}</strong>
-            <div style="font-size: 0.78rem; color: var(--eos-text-muted);">
-              ${r.kpl} kpl &bull; ${r.sivut} s.
+      ${ryhmat.map(r => {
+        const prosentti = yhteensaKpl > 0 
+          ? ((r.kpl / yhteensaKpl) * 100).toFixed(1) 
+          : "0.0";
+
+        return `
+          <li style="margin-bottom: 0.5rem;">
+            <div>
+              <strong>${r.nimi}</strong>
+              <div style="font-size: 0.78rem; color: var(--eos-text-muted);">
+                ${r.kpl} kpl (${prosentti} \%) &bull; ${r.sivut} s.
+              </div>
             </div>
-          </div>
-          <div style="text-align: right; white-space: nowrap;">
-            <strong style="color: var(--eos-cyan);">${r.kpl} kpl</strong>
-          </div>
-        </li>
-      `).join('')}
+            <div style="text-align: right; white-space: nowrap;">
+              <strong style="color: var(--eos-cyan);">${r.kpl} kpl</strong>
+              <div style="font-size: 0.8rem; color: var(--eos-text-muted);">${prosentti} %</div>
+            </div>
+          </li>
+        `;
+      }).join('')}
     </ul>
   `;
 }
