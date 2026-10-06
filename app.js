@@ -381,6 +381,82 @@ function renderIkaRyhmat(kirjalista) {
   `;
 }
 
+// 3. KORTTI: Kirjojen keskimääräinen ikä luettaessa (Alkuperämaa)
+function laskeMaittainIat(kirjalista) {
+  const maatMap = {};
+
+  kirjalista.forEach(k => {
+    const ika = laskeKirjanIka(k);
+    if (ika === null || !k.alkuperamaa) return;
+
+    const maat = typeof k.alkuperamaa === 'string'
+      ? k.alkuperamaa.split('/').map(s => s.trim()).filter(s => s.length > 0)
+      : [k.alkuperamaa];
+
+    maat.forEach(maa => {
+      if (!maatMap[maa]) {
+        maatMap[maa] = { summa: 0, kpl: 0 };
+      }
+      maatMap[maa].summa += ika;
+      maatMap[maa].kpl += 1;
+    });
+  });
+
+  return Object.entries(maatMap)
+    .map(([maa, stats]) => ({
+      maa,
+      kpl: stats.kpl,
+      keskiarvo: parseFloat((stats.summa / stats.kpl).toFixed(1))
+    }))
+    .sort((a, b) => b.keskiarvo - a.keskiarvo || a.maa.localeCompare(b.maa, 'fi'));
+}
+
+function renderMaanKeskiIat(kirjalista) {
+  const maaData = laskeMaittainIat(kirjalista);
+
+  if (maaData.length === 0) return "<ul><li><em>Ei dataa</em></li></ul>";
+
+  let nykyinenSija = 1;
+  const listatutSijoilla = maaData.map((item, index) => {
+    if (index > 0 && maaData[index - 1].keskiarvo !== item.keskiarvo) {
+      nykyinenSija = index + 1;
+    }
+    return { sija: nykyinenSija, ...item };
+  });
+
+  const top10 = listatutSijoilla.slice(0, 10);
+  const loput = listatutSijoilla.slice(10);
+
+  const luoRivitHTML = list => list.map(item => `
+    <li style="margin-bottom: 0.5rem;">
+      <div>
+        <span class="sijanumero">${item.sija}.</span> <strong>${item.maa}</strong>
+        <div style="font-size: 0.78rem; color: var(--eos-text-muted); margin-left: 1.5rem;">
+          ${item.kpl} kpl
+        </div>
+      </div>
+      <div style="text-align: right; white-space: nowrap;">
+        <strong>${item.keskiarvo} v.</strong>
+      </div>
+    </li>
+  `).join('');
+
+  let html = `<ul>${luoRivitHTML(top10)}</ul>`;
+
+  if (loput.length > 0) {
+    html += `
+      <div class="piilotetut-rivit" style="display: none;">
+        <ul>${luoRivitHTML(loput)}</ul>
+      </div>
+      <button class="btn-nayta-lisaa" onclick="toggleNaytaKaikki(this)">
+        Näytä kaikki (+${loput.length})
+      </button>
+    `;
+  }
+
+  return html;
+}
+
 function luoTilastot(kirjat) {
   const tilastoDiv = document.getElementById("tilastot-sisalto");
   if (!tilastoDiv) return;
@@ -621,10 +697,14 @@ function luoTilastot(kirjat) {
         ${renderKokoLista(maat, naytaHyllyInfo)}
       </div>
 
-      <!-- SIIRRETTY LOPPUUN -->
       <div class="tilasto-kortti">
         <h3>Kirjat iän mukaan luettaessa (Vanhimmasta nuorimpaan)</h3>
         ${renderKirjojenIat(kohdeKirjat)}
+      </div>
+
+      <div class="tilasto-kortti">
+        <h3>Kirjojen keskimääräinen ikä luettaessa (Alkuperämaa)</h3>
+        ${renderMaanKeskiIat(kohdeKirjat)}
       </div>
 
       <div class="tilasto-kortti">
