@@ -688,7 +688,7 @@ function luoTilastot(kirjat) {
       </div>
 
       <div class="tilasto-kortti">
-        <h3>Sivumäärät (Suomentaja)</h3>
+        <h3>Sivumäärät (Kääntäjä)</h3>
         ${renderKokoLista(kaantajat, naytaHyllyInfo)}
       </div>
 
