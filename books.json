@@ -9800,6 +9800,45 @@
     "luettu_pvm": "2026-10-07",
     "hyllyssa": true,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 755,
+    "kirjailija": "Manninen, P. A.",
+    "nimi": "Ellen Helldor",
+    "julkaisuvuosi": 2009,
+    "sivumaara": 94,
+    "kustantaja": "Zum Teufel",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2026-10-07",
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 756,
+    "kirjailija": "Mäkelä, Timo",
+    "nimi": "Kuolematon mestariteos",
+    "julkaisuvuosi": 2007,
+    "sivumaara": 56,
+    "kustantaja": "Arktinen Banaani",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2026-10-07",
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 757,
+    "kirjailija": "Sariola, Esa",
+    "nimi": "Ratkaisu kaikkeen",
+    "julkaisuvuosi": 2008,
+    "sivumaara": 121,
+    "kustantaja": "Otava",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2026-10-08",
+    "hyllyssa": true,
+    "luku_tilastoihin": true
   }
 
 
