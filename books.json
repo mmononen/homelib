@@ -3363,7 +3363,7 @@
     "suomentaja": "Suomi, Sirkka",
     "alkuperamaa": "Yhdysvallat",
     "luettu_pvm": "2016-05-28",
-    "hyllyssa": false,
+    "hyllyssa": true,
     "luku_tilastoihin": true
   },
   {
@@ -9839,7 +9839,165 @@
     "luettu_pvm": "2026-10-08",
     "hyllyssa": true,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 758,
+    "kirjailija": "Broch, Hermann",
+    "nimi": "[Unissakulkijat: 1] Luutnantti Pasenow eli Romantiikka 1888",
+    "julkaisuvuosi": 1931,
+    "sivumaara": 190,
+    "kustantaja": "Tammi",
+    "suomentaja": "Suominen, Oili",
+    "alkuperamaa": "Itävalta",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 759,
+    "kirjailija": "Vonnegut, Kurt",
+    "nimi": "Siniparta",
+    "julkaisuvuosi": 1987,
+    "sivumaara": 265,
+    "kustantaja": "Tammi",
+    "suomentaja": "Jukarainen, Erkki",
+    "alkuperamaa": "Yhdysvallat",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 760,
+    "kirjailija": "Oz, Amos",
+    "nimi": "Täydellinen rauha",
+    "julkaisuvuosi": 1982,
+    "sivumaara": 357,
+    "kustantaja": "Tammi",
+    "suomentaja": "Talvio-Jaatinen, Pirkko",
+    "alkuperamaa": "Israel",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 761,
+    "kirjailija": "Doctorow, E. L.",
+    "nimi": "Kynämies",
+    "julkaisuvuosi": 1984,
+    "sivumaara": 183,
+    "kustantaja": "Tammi",
+    "suomentaja": "Nyytäjä, Kalevi",
+    "alkuperamaa": "Yhdysvallat",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 762,
+    "kirjailija": "Singer, Isaac Bashevis",
+    "nimi": "Peltojen kuningas",
+    "julkaisuvuosi": 1988,
+    "sivumaara": 221,
+    "kustantaja": "Tammi",
+    "suomentaja": "Kemppinen, Jukka",
+    "alkuperamaa": "Yhdysvallat",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 763,
+    "kirjailija": "Kemal, Yaşar",
+    "nimi": "Memedin kosto",
+    "julkaisuvuosi": 1984,
+    "sivumaara": 689,
+    "kustantaja": "Tammi",
+    "suomentaja": "Tuominen, Karin",
+    "alkuperamaa": "Turkki",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 764,
+    "kirjailija": "Oz, Amos",
+    "nimi": "Musta laatikko",
+    "julkaisuvuosi": 1988,
+    "sivumaara": 294,
+    "kustantaja": "Tammi",
+    "suomentaja": "Talvio-Jaatinen, Pirkko",
+    "alkuperamaa": "Israel",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 765,
+    "kirjailija": "Broch, Hermann",
+    "nimi": "[Unissakulkijat: 2] Kirjanpitäjä Esch eli Anarkia 1903",
+    "julkaisuvuosi": 1931,
+    "sivumaara": 219,
+    "kustantaja": "Tammi",
+    "suomentaja": "Suominen, Oili",
+    "alkuperamaa": "Itävalta",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 766,
+    "kirjailija": "Doctorow, E. L.",
+    "nimi": "Gansterin oppipoika",
+    "julkaisuvuosi": 1989,
+    "sivumaara": 415,
+    "kustantaja": "Tammi",
+    "suomentaja": "Nyytäjä, Kalevi",
+    "alkuperamaa": "Yhdysvallat",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 767,
+    "kirjailija": "Mahfouz, Naguib",
+    "nimi": "Midaqq-kuja",
+    "julkaisuvuosi": 1947,
+    "sivumaara": 401,
+    "kustantaja": "Tammi",
+    "suomentaja": "Suni, Pekka / Shikeben, Mustafa",
+    "alkuperamaa": "Egypti",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 768,
+    "kirjailija": "Singer, Isaac Bashevis",
+    "nimi": "Vihassa ja rakkaudessa",
+    "julkaisuvuosi": 1966,
+    "sivumaara": 279,
+    "kustantaja": "Tammi",
+    "suomentaja": "Kemppinen, Jukka",
+    "alkuperamaa": "Yhdysvallat",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 769,
+    "kirjailija": "Irving, John",
+    "nimi": "Vesimies",
+    "julkaisuvuosi": 1972,
+    "sivumaara": 420,
+    "kustantaja": "Tammi",
+    "suomentaja": "Rikman, Kristiina",
+    "alkuperamaa": "Yhdysvallat",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
   }
+
+
 
 
 
