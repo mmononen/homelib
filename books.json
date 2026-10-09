@@ -10307,6 +10307,45 @@
     "luettu_pvm": "2026-10-09",
     "hyllyssa": true,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 794,
+    "kirjailija": "Kejonen, Pekka",
+    "nimi": "Kertakäyttösatori",
+    "julkaisuvuosi": 2014,
+    "sivumaara": 91,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2026-10-09",
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 795,
+    "kirjailija": "Paavilainen, Matti",
+    "nimi": "Tajunnan vihannat",
+    "julkaisuvuosi": 1982,
+    "sivumaara": 67,
+    "kustantaja": "Kirjayhtymä",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2026-10-09",
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 796,
+    "kirjailija": "Levola, Kari",
+    "nimi": "Avovedet",
+    "julkaisuvuosi": 1980,
+    "sivumaara": 76,
+    "kustantaja": "Weilin+Göös",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": "2026-10-09",
+    "hyllyssa": true,
+    "luku_tilastoihin": true
   }
 
 
