@@ -5426,7 +5426,7 @@
     "nimi": "Laulu omenapuusta",
     "julkaisuvuosi": 1985,
     "sivumaara": 29,
-    "kustantaja": "Lasten keskus",
+    "kustantaja": "Lasten Keskus",
     "suomentaja": "Vyyryläinen-Väänänen, Mervi",
     "alkuperamaa": "Tšekki",
     "luettu_pvm": "2010-01-22",
@@ -10346,7 +10346,86 @@
     "luettu_pvm": "2026-10-09",
     "hyllyssa": true,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 797,
+    "kirjailija": "Hergé",
+    "nimi": "[Tintin seikkailut: 24] Tintti Neuvostojen maassa",
+    "julkaisuvuosi": 1930,
+    "sivumaara": 141,
+    "kustantaja": "Otava",
+    "suomentaja": "Kaukoranta, Heikki / Kaukoranta, Soile",
+    "alkuperamaa": "Belgia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 798,
+    "kirjailija": "Hergé",
+    "nimi": "[Tintin seikkailut: 15] Tintti Kuun kamaralla",
+    "julkaisuvuosi": 1954,
+    "sivumaara": 62,
+    "kustantaja": "Otava",
+    "suomentaja": "Kaukoranta, Heikki / Kaukoranta, Soile",
+    "alkuperamaa": "Belgia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 799,
+    "kirjailija": "Hergé",
+    "nimi": "[Tintin seikkailut: 25] Tintti ja aakkostaide",
+    "julkaisuvuosi": 1986,
+    "sivumaara": 62,
+    "kustantaja": "Otava",
+    "suomentaja": "Kaukoranta, Heikki",
+    "alkuperamaa": "Belgia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 800,
+    "kirjailija": "Bonelli, Gianluigi / Galleppini, Aurelio",
+    "nimi": "[Tex Willer: 56] Pirullinen kosto",
+    "julkaisuvuosi": 2020,
+    "sivumaara": 298,
+    "kustantaja": "Egmont",
+    "suomentaja": "Nyman, Jukka",
+    "alkuperamaa": "Italia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 801,
+    "kirjailija": "Skillen, Chris",
+    "nimi": "Venäläisiä sananlaskuja",
+    "julkaisuvuosi": 1994,
+    "sivumaara": 59,
+    "kustantaja": "Lasten Keskus",
+    "suomentaja": "Savolainen, Maisa",
+    "alkuperamaa": "Iso-Britannia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 802,
+    "kirjailija": "De Saint-Exupéry, Antoine",
+    "nimi": "Sanat kuin tähdet",
+    "julkaisuvuosi": 1984,
+    "sivumaara": 96,
+    "kustantaja": "WSOY",
+    "suomentaja": "Suni, Annikki",
+    "alkuperamaa": "Ranska",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
   }
+
 
 
 
