@@ -13011,6 +13011,45 @@
     "luettu_pvm": null,
     "hyllyssa": true,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 1002,
+    "kirjailija": "Keegan, Claire",
+    "nimi": "Aivan viime hetkellä",
+    "julkaisuvuosi": 2023,
+    "sivumaara": 109,
+    "kustantaja": "Tammi",
+    "suomentaja": "Rikman, Kristiina",
+    "alkuperamaa": "Irlanti",
+    "luettu_pvm": "2026-10-17",
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1003,
+    "kirjailija": "Andrić, Ivo",
+    "nimi": "Drina-joen silta",
+    "julkaisuvuosi": 1945,
+    "sivumaara": 318,
+    "kustantaja": "Tammi",
+    "suomentaja": "Sinervo, Aira / Sinervo, Elvi",
+    "alkuperamaa": "Serbia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1004,
+    "kirjailija": "Coe, Jonathan",
+    "nimi": "Suljettu piiri",
+    "julkaisuvuosi": 2004,
+    "sivumaara": 587,
+    "kustantaja": "Tammi",
+    "suomentaja": "Virtanen, Arvo",
+    "alkuperamaa": "Iso-Britannia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
   }
 
 
