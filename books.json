@@ -13022,7 +13022,7 @@
     "suomentaja": "Rikman, Kristiina",
     "alkuperamaa": "Irlanti",
     "luettu_pvm": "2026-10-17",
-    "hyllyssa": true,
+    "hyllyssa": false,
     "luku_tilastoihin": true
   },
   {
@@ -13297,23 +13297,423 @@
     "luettu_pvm": null,
     "hyllyssa": true,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 1024,
+    "kirjailija": "Tapper, Harri",
+    "nimi": "Kerrothan, oi koivu",
+    "julkaisuvuosi": 1993,
+    "sivumaara": 320,
+    "kustantaja": "Atena",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1025,
+    "kirjailija": "Teeriaho, Taina",
+    "nimi": "Etelärinteiden miehet: 14 novellia keväästä syksyyn",
+    "julkaisuvuosi": 2002,
+    "sivumaara": 233,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1026,
+    "kirjailija": "Tervo, Jari",
+    "nimi": "Rautapää",
+    "julkaisuvuosi": 2002,
+    "sivumaara": 192,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1027,
+    "kirjailija": "Teräsahjo, Timo",
+    "nimi": "Keksijän poika",
+    "julkaisuvuosi": 2000,
+    "sivumaara": 124,
+    "kustantaja": "Gummerus",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1028,
+    "kirjailija": "Tiitinen, Esko-Pekka",
+    "nimi": "Yrjö Orwelli ja karsinan kapina",
+    "julkaisuvuosi": 2012,
+    "sivumaara": 61,
+    "kustantaja": "Kameli",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1029,
+    "kirjailija": "Tikkanen, Pentti H.",
+    "nimi": "Lapin vuoden kierto",
+    "julkaisuvuosi": 2004,
+    "sivumaara": 207,
+    "kustantaja": "Kustannus HD",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1030,
+    "kirjailija": "Tossavainen, Jouni",
+    "nimi": "Lentävä C: novelleja",
+    "julkaisuvuosi": 1994,
+    "sivumaara": 120,
+    "kustantaja": "Like",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1031,
+    "kirjailija": "Turja, Ilmari",
+    "nimi": "Satayksi",
+    "julkaisuvuosi": 1970,
+    "sivumaara": 381,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1032,
+    "kirjailija": "Tuulari, Jyrki",
+    "nimi": "Musta",
+    "julkaisuvuosi": 1987,
+    "sivumaara": 187,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1033,
+    "kirjailija": "Tuulari, Jyrki",
+    "nimi": "Sirpaleita",
+    "julkaisuvuosi": 1990,
+    "sivumaara": 153,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1034,
+    "kirjailija": "Tuuri, Antti",
+    "nimi": "Talvisota",
+    "julkaisuvuosi": 1984,
+    "sivumaara": 242,
+    "kustantaja": "Suuri Suomalainen Kirjakerho",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1035,
+    "kirjailija": "Uschanov, Tommi",
+    "nimi": "Sininen tango",
+    "julkaisuvuosi": 2017,
+    "sivumaara": 165,
+    "kustantaja": "Teos",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1036,
+    "kirjailija": "Vainonen, Jyrki",
+    "nimi": "Naulankantakeitto ja muuta juustohöylättyä hengenravintoa",
+    "julkaisuvuosi": 2016,
+    "sivumaara": 141,
+    "kustantaja": "Atena",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1037,
+    "kirjailija": "Vala, Klaus",
+    "nimi": "Nikolai Kval: acubiografia",
+    "julkaisuvuosi": 1995,
+    "sivumaara": 119,
+    "kustantaja": "Art House",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1038,
+    "kirjailija": "Valtonen, Jussi",
+    "nimi": "He eivät tiedä mitä tekevät",
+    "julkaisuvuosi": 2014,
+    "sivumaara": 559,
+    "kustantaja": "Tammi",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1039,
+    "kirjailija": "Varis, Tuula-Liina",
+    "nimi": "Toshiro Mifunen tiikeri",
+    "julkaisuvuosi": 2005,
+    "sivumaara": 240,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1040,
+    "kirjailija": "Viinikainen, Antero",
+    "nimi": "Iberian kuvat",
+    "julkaisuvuosi": 1999,
+    "sivumaara": 433,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1041,
+    "kirjailija": "Viinikainen, Antero",
+    "nimi": "Pentti Saarikosken toinen tuleminen",
+    "julkaisuvuosi": 2012,
+    "sivumaara": 271,
+    "kustantaja": "Like",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1042,
+    "kirjailija": "Viinikainen, Antero",
+    "nimi": "Sisiliskopalatsi",
+    "julkaisuvuosi": 2005,
+    "sivumaara": 353,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1043,
+    "kirjailija": "Viita, Lauri",
+    "nimi": "Moreeni",
+    "julkaisuvuosi": 1950,
+    "sivumaara": 346,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1044,
+    "kirjailija": "Vimma, Tuomas",
+    "nimi": "Koodinimi Taïga",
+    "julkaisuvuosi": 2020,
+    "sivumaara": 332,
+    "kustantaja": "Gummerus",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1045,
+    "kirjailija": "Vuontisjärvi, Taru",
+    "nimi": "Nyhtänköljä",
+    "julkaisuvuosi": 2014,
+    "sivumaara": 304,
+    "kustantaja": "Sammakko",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1046,
+    "kirjailija": "Väisänen, Hannu",
+    "nimi": "Kuperat ja koverat",
+    "julkaisuvuosi": 2010,
+    "sivumaara": 431,
+    "kustantaja": "Otava",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1047,
+    "kirjailija": "Väisänen, Hannu",
+    "nimi": "Vanikan palat",
+    "julkaisuvuosi": 2004,
+    "sivumaara": 412,
+    "kustantaja": "Otava",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1048,
+    "kirjailija": "Waltari, Mika",
+    "nimi": "Ihmeellinen Joosef eli elämä on seikkailua",
+    "julkaisuvuosi": 1938,
+    "sivumaara": 216,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1049,
+    "kirjailija": "Waltari, Mika",
+    "nimi": "Appelsiinin Siemen",
+    "julkaisuvuosi": 1931,
+    "sivumaara": 507,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1050,
+    "kirjailija": "Waltari, Mika",
+    "nimi": "Ihmiskunnan viholliset I: Minutus roomalainen",
+    "julkaisuvuosi": 1964,
+    "sivumaara": 407,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1051,
+    "kirjailija": "Waltari, Mika",
+    "nimi": "Ihmiskunnan viholliset II: poikani Julius",
+    "julkaisuvuosi": 1964,
+    "sivumaara": 367,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1052,
+    "kirjailija": "Waltari, Mika",
+    "nimi": "Kolme pienoisromaania: Fine van Brooklyn; Sellaista ei tapahdu; Kuun maisema",
+    "julkaisuvuosi": 1946,
+    "sivumaara": 226,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1053,
+    "kirjailija": "Waltari, Satu",
+    "nimi": "Kahvila Mabillon",
+    "julkaisuvuosi": 1952,
+    "sivumaara": 187,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1054,
+    "kirjailija": "Westö, Mårten",
+    "nimi": "Eräänlaista lämpöä",
+    "julkaisuvuosi": 2007,
+    "sivumaara": 142,
+    "kustantaja": "Otava",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1055,
+    "kirjailija": "Ylikarjula, Simo",
+    "nimi": "Pimeän tähden valo",
+    "julkaisuvuosi": 2007,
+    "sivumaara": 297,
+    "kustantaja": "Kustannus HD",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
