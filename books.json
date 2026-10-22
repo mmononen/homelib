@@ -14168,6 +14168,32 @@
     "luettu_pvm": null,
     "hyllyssa": true,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 1091,
+    "kirjailija": "Mäkelä, Hannu",
+    "nimi": "Kotimies",
+    "julkaisuvuosi": 1967,
+    "sivumaara": 237,
+    "kustantaja": "Otava",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1092,
+    "kirjailija": "Mäkelä, Hannu",
+    "nimi": "Oman itsensä herra",
+    "julkaisuvuosi": 1971,
+    "sivumaara": 246,
+    "kustantaja": "Otava",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
   }
 
 
