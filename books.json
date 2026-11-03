@@ -2375,7 +2375,7 @@
     "suomentaja": null,
     "alkuperamaa": "Suomi",
     "luettu_pvm": "2022-12-20",
-    "hyllyssa": true,
+    "hyllyssa": false,
     "luku_tilastoihin": true
   },
   {
@@ -2388,7 +2388,7 @@
     "suomentaja": null,
     "alkuperamaa": "Suomi",
     "luettu_pvm": "2022-12-26",
-    "hyllyssa": true,
+    "hyllyssa": false,
     "luku_tilastoihin": true
   },
   {
@@ -12410,7 +12410,7 @@
     "kustantaja": "Like",
     "suomentaja": null,
     "alkuperamaa": "Suomi",
-    "luettu_pvm": null,
+    "luettu_pvm": "2026-11-03",
     "hyllyssa": true,
     "luku_tilastoihin": true
   },
