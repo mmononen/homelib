@@ -15091,7 +15091,99 @@
     "luettu_pvm": null,
     "hyllyssa": true,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 1162,
+    "kirjailija": "Tabucchi, Antonio",
+    "nimi": "Kertoo Pereira",
+    "julkaisuvuosi": 1994,
+    "sivumaara": 176,
+    "kustantaja": "Tammi",
+    "suomentaja": "Ryömä, Liisa",
+    "alkuperamaa": "Italia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1163,
+    "kirjailija": "Rouaud, Jean",
+    "nimi": "Maailmaa, likimain",
+    "julkaisuvuosi": 1996,
+    "sivumaara": 236,
+    "kustantaja": "Tammi",
+    "suomentaja": "Jukarainen, Erkki",
+    "alkuperamaa": "Ranska",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1164,
+    "kirjailija": "Huovinen, Veikko",
+    "nimi": "Havukka-ahon ajattelija",
+    "julkaisuvuosi": 1952,
+    "sivumaara": 190,
+    "kustantaja": "Suuri Suomalainen Kirjakerho",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1165,
+    "kirjailija": "Huovinen, Veikko",
+    "nimi": "Ympäristöministeri: ekotarinoita",
+    "julkaisuvuosi": 1982,
+    "sivumaara": 185,
+    "kustantaja": "Suuri Suomalainen Kirjakerho",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1166,
+    "kirjailija": "Kaukonen, Tauno",
+    "nimi": "Klaani",
+    "julkaisuvuosi": 1963,
+    "sivumaara": 397,
+    "kustantaja": "Like",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1167,
+    "kirjailija": "Tamminen, Petri",
+    "nimi": "Musta vyö",
+    "julkaisuvuosi": 2019,
+    "sivumaara": 174,
+    "kustantaja": "Otava",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1168,
+    "kirjailija": "Mäkelä, Hannu",
+    "nimi": "Unelma onnesta numero 5",
+    "julkaisuvuosi": 1985,
+    "sivumaara": 106,
+    "kustantaja": "Otava",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
   }
+
 
 
 
