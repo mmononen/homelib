@@ -15533,13 +15533,189 @@
     "luettu_pvm": null,
     "hyllyssa": true,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 1196,
+    "kirjailija": "Namora, Fernando",
+    "nimi": "Hyvä ja paha kylvö",
+    "julkaisuvuosi": 1954,
+    "sivumaara": 236,
+    "kustantaja": "Otava",
+    "suomentaja": "Mäki, Hilkka",
+    "alkuperamaa": "Portugali",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1197,
+    "kirjailija": "Neuvel, Sylvain",
+    "nimi": "[Matkalla tähtiin: 1] Tulevaisuuden historia",
+    "julkaisuvuosi": 2021,
+    "sivumaara": 318,
+    "kustantaja": "Like",
+    "suomentaja": "Aaltonen, Einari",
+    "alkuperamaa": "Kanada",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1198,
+    "kirjailija": "Nielsen, Torben",
+    "nimi": "Yhdeksäntoista punaista ruusua",
+    "julkaisuvuosi": 1973,
+    "sivumaara": 207,
+    "kustantaja": "WSOY",
+    "suomentaja": "Ingervo, Arto / Ingervo, Kirsti",
+    "alkuperamaa": "Tanska",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1199,
+    "kirjailija": "Niemi, Mikael",
+    "nimi": "Nahkakolo",
+    "julkaisuvuosi": 2004,
+    "sivumaara": 229,
+    "kustantaja": "Like",
+    "suomentaja": "Tuuva-Hietala, Tuula",
+    "alkuperamaa": "Ruotsi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1200,
+    "kirjailija": "Nova, Craig",
+    "nimi": "Hyvä poika",
+    "julkaisuvuosi": 1982,
+    "sivumaara": 448,
+    "kustantaja": "Koko Kansan Kirjakerho",
+    "suomentaja": "Kaskimies, Heikki",
+    "alkuperamaa": "Ruotsi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1201,
+    "kirjailija": "Odojewski, Włodzimierz",
+    "nimi": "Tomu ja tuhka",
+    "julkaisuvuosi": 1964,
+    "sivumaara": 237,
+    "kustantaja": "Gummerus",
+    "suomentaja": "Varpio, Yrjö",
+    "alkuperamaa": "Puola",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1202,
+    "kirjailija": "O'Donnell, Peter",
+    "nimi": "Modesty Blaise",
+    "julkaisuvuosi": 1965,
+    "sivumaara": 252,
+    "kustantaja": "Otava",
+    "suomentaja": "Harjulehto, Seppo",
+    "alkuperamaa": "Iso-Britannia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1203,
+    "kirjailija": "O'Farrell, John",
+    "nimi": "Terveisiä perheestä",
+    "julkaisuvuosi": 2005,
+    "sivumaara": 317,
+    "kustantaja": "Otava",
+    "suomentaja": "Päkkilä, Markku",
+    "alkuperamaa": "Iso-Britannia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1204,
+    "kirjailija": "O'Farrell, John",
+    "nimi": "Yllätys, yllätys",
+    "julkaisuvuosi": 2002,
+    "sivumaara": 391,
+    "kustantaja": "Otava",
+    "suomentaja": "Päkkilä, Markku",
+    "alkuperamaa": "Iso-Britannia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1205,
+    "kirjailija": "Oloixarac, Pola",
+    "nimi": "Kesyttömät teoriat",
+    "julkaisuvuosi": 2014,
+    "sivumaara": 264,
+    "kustantaja": "Sammakko",
+    "suomentaja": "Aaltonen, Einari",
+    "alkuperamaa": "Argentiina",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1206,
+    "kirjailija": "Pirandello, Luigi",
+    "nimi": "Mennyttä miestä",
+    "julkaisuvuosi": 1904,
+    "sivumaara": 300,
+    "kustantaja": "Forma",
+    "suomentaja": "Ryömä, Liisa",
+    "alkuperamaa": "Italia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1207,
+    "kirjailija": "Powell, Anthony",
+    "nimi": "[Tanssi ajan pyörteissä: 2] Ostajan markkinat",
+    "julkaisuvuosi": 1952,
+    "sivumaara": 304,
+    "kustantaja": "Otava",
+    "suomentaja": "Lindholm, Juhani",
+    "alkuperamaa": "Iso-Britannia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1208,
+    "kirjailija": "Raspe, Rudolf",
+    "nimi": "Paroni von Münchhausenin seikkailut",
+    "julkaisuvuosi": 1785,
+    "sivumaara": 283,
+    "kustantaja": "Karisto",
+    "suomentaja": "Kanerva, Rauni",
+    "alkuperamaa": "Saksa",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1209,
+    "kirjailija": "Remarque, Erich Maria",
+    "nimi": "Riemukaari",
+    "julkaisuvuosi": 1945,
+    "sivumaara": 537,
+    "kustantaja": "Mantere",
+    "suomentaja": "Vankkoja, Vankka",
+    "alkuperamaa": "Saksa",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
   }
-
-
-
-
-
-
 
 ]
 
