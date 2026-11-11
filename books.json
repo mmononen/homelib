@@ -15715,6 +15715,97 @@
     "luettu_pvm": null,
     "hyllyssa": true,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 1210,
+    "kirjailija": "Roberts, Keith",
+    "nimi": "Leijamaailma",
+    "julkaisuvuosi": 1985,
+    "sivumaara": 261,
+    "kustantaja": "Jalava",
+    "suomentaja": "Järvinen, Jyri-Pekka",
+    "alkuperamaa": "Iso-Britannia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1211,
+    "kirjailija": "Rochefort, Christiane",
+    "nimi": "Sivuovi",
+    "julkaisuvuosi": 1988,
+    "sivumaara": 227,
+    "kustantaja": "Art House",
+    "suomentaja": "Luoma, Marja",
+    "alkuperamaa": "Ranska",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1212,
+    "kirjailija": "Rochefort, Christiane",
+    "nimi": "Vuosisatamme lapset",
+    "julkaisuvuosi": 1961,
+    "sivumaara": 123,
+    "kustantaja": "Tammi",
+    "suomentaja": "Vuosalmi, Georgette",
+    "alkuperamaa": "Ranska",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1213,
+    "kirjailija": "Ronson, Jon",
+    "nimi": "Them: Adventures with Extremists",
+    "julkaisuvuosi": 2001,
+    "sivumaara": 328,
+    "kustantaja": "Picador",
+    "suomentaja": null,
+    "alkuperamaa": "Iso-Britannia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1214,
+    "kirjailija": "Roth, Philip",
+    "nimi": "The Ghost Writer",
+    "julkaisuvuosi": 1979,
+    "sivumaara": 179,
+    "kustantaja": "Jonathan Cape",
+    "suomentaja": null,
+    "alkuperamaa": "Yhdysvallat",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1215,
+    "kirjailija": "Roubaudi, Ludovic",
+    "nimi": "Sirkuksen miehiä",
+    "julkaisuvuosi": 2002,
+    "sivumaara": 211,
+    "kustantaja": "Gummerus",
+    "suomentaja": "Toivanen, Lotta",
+    "alkuperamaa": "Ranska",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1216,
+    "kirjailija": "Ruffato, Luiz / Araújo, Mario / Salem Levy, Tatiana / Maia, Ana Paula / Saavedra, Carola / Montenegro, Tércia / Correia de Brito, Ronaldo / Bonassi, Fernando / Leones, André de / Carneiro, Flávio / Lisboa, Adriana / Brum, Eliane / Moutinho, Marcelo / Pereira, Rogério / Tezza, Cristovão / Sant'Anna, André",
+    "nimi": "Pilkun paikka",
+    "julkaisuvuosi": 2013,
+    "sivumaara": 234,
+    "kustantaja": "Aviador",
+    "suomentaja": "Lappi-Seppälä, Jyrki",
+    "alkuperamaa": "Brasilia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
   }
 
 ]
