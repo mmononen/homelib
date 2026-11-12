@@ -16014,6 +16014,58 @@
     "luettu_pvm": null,
     "hyllyssa": true,
     "luku_tilastoihin": true
+  },
+  {
+    "id": 1233,
+    "kirjailija": "Høeg, Peter",
+    "nimi": "Kuvitelma 20. vuosisadasta: Tanskan unelmien historia",
+    "julkaisuvuosi": 1988,
+    "sivumaara": 482,
+    "kustantaja": "Tammi",
+    "suomentaja": "Talvio-Jaatinen, Pirkko",
+    "alkuperamaa": "Tanska",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1234,
+    "kirjailija": "Canetti, Elias",
+    "nimi": "Silmäpeli: Elämäntarina vuosilta 1931-1937",
+    "julkaisuvuosi": 1985,
+    "sivumaara": 343,
+    "kustantaja": "Tammi",
+    "suomentaja": "Villa, Kyllikki",
+    "alkuperamaa": "Iso-Britannia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1235,
+    "kirjailija": "Shakespeare, William",
+    "nimi": "The Taming of the Shrew",
+    "julkaisuvuosi": 1592,
+    "sivumaara": 251,
+    "kustantaja": "Washington Square Press",
+    "suomentaja": null,
+    "alkuperamaa": "Iso-Britannia",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
+  },
+  {
+    "id": 1236,
+    "kirjailija": "Kettu, Katja",
+    "nimi": "Yöperhonen",
+    "julkaisuvuosi": 2015,
+    "sivumaara": 325,
+    "kustantaja": "WSOY",
+    "suomentaja": null,
+    "alkuperamaa": "Suomi",
+    "luettu_pvm": null,
+    "hyllyssa": true,
+    "luku_tilastoihin": true
   }
 
 ]
